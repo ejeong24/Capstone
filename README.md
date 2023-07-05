@@ -22,21 +22,35 @@
    - As a user, I want to be able to log out of my account.
 
 4. Wireframe (Figma)
+   Home
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Home.PNG
+   Leagues
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Leagues.PNG
+   My FutHut
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20My%20FutHut.PNG
+   Player by ID
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Player%20by%20ID.PNG
+   Players (All or by League)
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Players%20and%20by%20League.PNG
+   Sign In
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Sign%20In.PNG
+   Sign Out
+   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Sign%20Out.PNG
 
-5. Diagram of React components
+6. Diagram of React components
    - Include details on which components use which states
 
-6. Screenshot of Schema (Figma)
+7. Screenshot of Schema (Figma)
    - Include relationships and any other info
    - Include what validations you will be using
    - Include an example of seed data
 
-7. A list of the app's API routes, including:
+8. A list of the app's API routes, including:
    - API route (localhost:3000/example)
    - Method (POST, DELETE, etc.)
    - Params you will include (if any)
    - Expected response format
 
-8. Three stretch goals
+9. Three stretch goals
 
-9. A Kanban board
+10. A Kanban board
