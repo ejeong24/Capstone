@@ -21,7 +21,7 @@
    - As a user, I want the application to handle validations to ensure the data provided is valid and consistent.
    - As a user, I want to be able to log out of my account.
 
-4. Wireframe (Figma)
+4. Wireframe (Figma)  
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Home.PNG)
 ![Wireframe - Leagues](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Leagues.PNG)
 ![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/raw/main/FutHut%20My%20FutHut.PNG)
