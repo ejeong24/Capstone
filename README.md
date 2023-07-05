@@ -46,7 +46,10 @@
    - Expected response format
 
 9. Three stretch goals
+   - Let users filter players by additional attributes
+   - Render graphs showing market price trends for a given player
+   - Implement a drag-and-drop feature for adding players to a squad
 
-10. A Kanban board
+11. A Kanban board
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%201.PNG)
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%202.PNG)
