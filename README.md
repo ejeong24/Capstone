@@ -1,6 +1,5 @@
 # Capstone Project Pitch: FutHut
 
-## Requirements:
 1. A one sentence description of the app  
    - FutHut revolutionizes FIFA Ultimate Team by providing users with a socially-driven web app that simplifies squad building, testing, and sharing for a more convenient and engaging experience.
 
