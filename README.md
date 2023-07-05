@@ -22,20 +22,14 @@
    - As a user, I want to be able to log out of my account.
 
 4. Wireframe (Figma)
-   Home
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Home.PNG
-   Leagues
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Leagues.PNG
-   My FutHut
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20My%20FutHut.PNG
-   Player by ID
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Player%20by%20ID.PNG
-   Players (All or by League)
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Players%20and%20by%20League.PNG
-   Sign In
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Sign%20In.PNG
-   Sign Out
-   - https://github.com/ejeong24/Capstone/blob/main/FutHut%20Sign%20Out.PNG
+![Wireframe - Home](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Home.PNG)
+![Wireframe - Leagues](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Leagues.PNG)
+![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/raw/main/FutHut%20My%20FutHut.PNG)
+![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Player%20by%20ID.PNG)
+![Wireframe - Players (All or by League)](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Players%20and%20by%20League.PNG)
+![Wireframe - Sign In](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Sign%20In.PNG)
+![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Sign%20Out.PNG)
+
 
 6. Diagram of React components
    - Include details on which components use which states
