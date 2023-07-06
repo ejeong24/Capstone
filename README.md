@@ -38,8 +38,9 @@
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
 8. A list of the app's API routes, including:
+![API Routes](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20API%20Routes.PNG)
 
-9. Three stretch goals
+10. Three stretch goals
    - Let users filter players by additional attributes
    - Render graphs showing market price trends for a given player
    - Implement a drag-and-drop feature for adding players to a squad
