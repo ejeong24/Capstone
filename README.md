@@ -23,10 +23,10 @@
 
 4. Wireframe (Figma)  
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Home.PNG)
-![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Leagues.PNG)
 ![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20My%20FutHut.PNG)
 ![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Player%20by%20ID.PNG)
 ![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Players%20and%20by%20League.PNG)
+![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Leagues.PNG)
 ![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20In.PNG)
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20Out.PNG)
 
