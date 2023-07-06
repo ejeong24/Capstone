@@ -7,18 +7,19 @@
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
 
 3. User Stories
-   - As a user, I want to be able to register an account, providing my username, e-mail, and password.
-   - As a user, I want to be able to log in to my account using my username and password.
-   - As a user, I want to be able to view a list of available players (in general or by league), including their names, price, attributes, clubs, and ratings.
-   - As a user, I want to be able to view detailed information about a specific player (via search or on-click), including their names, price, attributes, clubs, and ratings.
-   - As a user, I want to be able to create a new squad, providing a squad name.
-   - As a user, I want to be able to view a list of my squads.
-   - As a user, I want to be able to edit the information of a specific ("Active") squad, including changing the name and removing players.
-   - As a user, I want to be able to delete a specific squad from my account.
-   - As a user, I want to be able to add and edit my profile, including username, profile picture, gaming platform, and bio.
-   - As a user, I want to receive appropriate error messages if I encounter any issues during registration, login, or other operations.
-   - As a user, I want the application to handle validations to ensure the data provided is valid and consistent.
-   - As a user, I want to be able to log out of my account.
+   - As a user, I want to have the ability to:
+      - Register an account with my username, email, and password.
+      - Log in to my account using my username and password.
+      - View a list of available players, including their names, price, attributes, clubs, and ratings. This list can be filtered by league.
+      - View detailed information about a specific player, including their names, price, attributes, clubs, and ratings. This can be done through search or by clicking on a player.
+      - Create a new squad by providing a squad name.
+      - View a list of my squads.
+      - Edit the information of a specific ("Active") squad, including changing the name and removing players.
+      - Delete a specific squad from my account.
+      - Add and edit my profile information, such as username, profile picture, gaming platform, and bio.
+      - Receive appropriate error messages in case of any issues during registration, login, or other operations.
+      - Benefit from data validations to ensure the provided data is valid and consistent.
+      - Log out of my account easily.
 
 4. Wireframe (Figma)  
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Home.PNG)
