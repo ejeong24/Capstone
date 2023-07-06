@@ -1,12 +1,12 @@
-## ⚽️ FutHut
+# ⚽️ FutHut
 
-# 💻 Description 
+## 💻 Description 
    - FutHut revolutionizes FIFA Ultimate Team by providing users with a web app that simplifies squad building for a more convenient and engaging experience.
 
-# 📂 GitHub Repository  
+## 📂 GitHub Repository  
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
 
-# 📚 User Stories
+## 📚 User Stories
    - As a user, I want to have the ability to:
       - Register an account with my username, email, and password.
       - Log in to my account using my username and password.
@@ -21,7 +21,7 @@
       - Benefit from data validations to ensure the provided data is valid and consistent.
       - Log out of my account.
 
-# 🎨 Wireframe (Figma)  
+## 🎨 Wireframe (Figma)  
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Home.PNG)
 ![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20My%20FutHut.PNG)
 ![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Player%20by%20ID.PNG)
@@ -31,10 +31,10 @@
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20Out.PNG)
 
 
-# 🌳 React Components Tree  
+## 🌳 React Components Tree  
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
-# ↔️ Schema
+## ↔️ Schema
 - Diagram  
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
@@ -67,14 +67,14 @@
       - Route: /signup
       - Component: SignUp
 
-# 🛠️ API Routes  
+## 🛠️ API Routes  
 ![API Routes](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20API%20Routes.PNG)
 
-# 🎯 Stretch Goals
+## 🎯 Stretch Goals
 - Let users filter players by additional attributes
 - Render graphs showing market price trends for a given player
 - Implement a drag-and-drop feature for adding players to a squad
 
-# 📌 Kanban Board
+## 📌 Kanban Board
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%201.PNG)
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%202.PNG)
