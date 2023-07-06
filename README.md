@@ -31,7 +31,7 @@
 
 
 6. Diagram of React components
-   - Include details on which components use which states
+   ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
 7. Screenshot of Schema (Figma)
    - Include relationships and any other info
