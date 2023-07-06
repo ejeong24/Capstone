@@ -19,20 +19,20 @@
       - Add and edit my profile information, such as username, profile picture, gaming platform, and bio.
       - Receive appropriate error messages in case of any issues during registration, login, or other operations.
       - Benefit from data validations to ensure the provided data is valid and consistent.
-      - Log out of my account easily.
+      - Log out of my account.
 
 4. Wireframe (Figma)  
-![Wireframe - Home](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Home.PNG)
-![Wireframe - Leagues](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Leagues.PNG)
-![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/raw/main/FutHut%20My%20FutHut.PNG)
-![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Player%20by%20ID.PNG)
-![Wireframe - Players (All or by League)](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Players%20and%20by%20League.PNG)
-![Wireframe - Sign In](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Sign%20In.PNG)
-![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Sign%20Out.PNG)
+![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Home.PNG)
+![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Leagues.PNG)
+![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20My%20FutHut.PNG)
+![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Player%20by%20ID.PNG)
+![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Players%20and%20by%20League.PNG)
+![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20In.PNG)
+![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20Out.PNG)
 
 
-6. React Components Tree
-   ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
+6. React Components Tree  
+![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
 7. Schema
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
