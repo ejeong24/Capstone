@@ -38,18 +38,20 @@
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
 8. A list of the app's API routes, including:
-Route	Method	Params	Response
-/api/users/register	POST	username (string), email (string), password (string)	[{id, username, bio, email}]
-/api/users/login	POST	username (string), password (string)	[{token}]
-/api/players	GET	None	[{id, name, price, attributes, clubs, ratings}]
-/api/players?leagueId={leagueId}	GET	leagueId (string)	Filtered list of player objects based on the specified league
-/api/players/:playerId	GET	playerId (string)	[{id, name, price, attributes, clubs, ratings}]
-/api/squads	POST	userId (string), name (string)	[{id, name, players}]
-/api/users/:userId/squads	GET	userId (string)	List of user's squad objects
-/api/squads/:squadId	PATCH	squadId (string)	[{id, name, players}]
-/api/squads/:squadId	DELETE	squadId (string)	Success message or status code
-/api/users/:userId/profile	PATCH	userId (string), username (string), profilePicture (file), gamingPlatform (string), bio (string)	[{id, username, bio, profilePicture, gamingPlatform}]
-/api/users/logout	POST	None	Success message or status code
+| Route                                      | Method | Params                                                | Response                                                          |
+|--------------------------------------------|--------|-------------------------------------------------------|-------------------------------------------------------------------|
+| /api/users/register                        | POST   | username (string), email (string), password (string) | `[{id, username, bio, email}]`                                    |
+| /api/users/login                           | POST   | username (string), password (string)                  | `[{token}]`                                                       |
+| /api/players                               | GET    | None                                                  | `[{id, name, price, attributes, clubs, ratings}]`                  |
+| /api/players?leagueId={leagueId}           | GET    | leagueId (string)                                     | Filtered list of player objects based on the specified league      |
+| /api/players/:playerId                     | GET    | playerId (string)                                     | `[{id, name, price, attributes, clubs, ratings}]`                  |
+| /api/squads                                | POST   | userId (string), name (string)                        | `[{id, name, players}]`                                            |
+| /api/users/:userId/squads                  | GET    | userId (string)                                       | List of user's squad objects                                       |
+| /api/squads/:squadId                       | PATCH  | squadId (string)                                      | `[{id, name, players}]`                                            |
+| /api/squads/:squadId                       | DELETE | squadId (string)                                      | Success message or status code                                     |
+| /api/users/:userId/profile                 | PATCH  | userId (string), username (string), profilePicture (file), gamingPlatform (string), bio (string) | `[{id, username, bio, profilePicture, gamingPlatform}]` |
+| /api/users/logout                          | POST   | None                                                  | Success message or status code                                      |
+
 
 9. Three stretch goals
    - Let users filter players by additional attributes
