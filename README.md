@@ -38,21 +38,19 @@
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
 8. A list of the app's API routes, including:
-```
-| Route | Method | Params | Response |
-|---|---|---|---|
-| `/api/users/register` | POST | `username (string), email (string), password (string)` | `[{id, username, bio, email}]` |
-| `/api/users/login` | POST | `username (string), password (string)` | `[{token}]` |
-| `/api/players` | GET | None | `[{id, name, price, attributes, clubs, ratings}]` |
-| `/api/players?leagueId={leagueId}` | GET | `leagueId (string)` | Filtered list of player objects based on the specified league |
-| `/api/players/:playerId` | GET | `playerId (string)` | `[{id, name, price, attributes, clubs, ratings}]` |
-| `/api/squads` | POST | `userId (string), name (string)` | `[{id, name, players}]` |
-| `/api/users/:userId/squads` | GET | `userId (string)` | List of user's squad objects |
-| `/api/squads/:squadId` | PATCH | `squadId (string)` | `[{id, name, players}]` |
-| `/api/squads/:squadId` | DELETE | `squadId (string)` | Success message or status code |
-| `/api/users/:userId/profile` | PATCH | `userId (string), username (string), profilePicture (file), gamingPlatform (string), bio (string)` | `[{id, username, bio, profilePicture, gamingPlatform}]` |
-| `/api/users/logout` | POST | None | Success message or status code |
-```
+| Route                                      | Method | Params                                                | Response                                                          |
+|--------------------------------------------|--------|-------------------------------------------------------|-------------------------------------------------------------------|
+| `/api/users/register`                      | POST   | `username` (string), `email` (string), `password` (string) | `[{ "id": "user_id", "username": "username", "bio": "bio", "email": "email" }]` |
+| `/api/users/login`                         | POST   | `username` (string), `password` (string)                  | `[{ "token": "authentication_token" }]`                                                       |
+| `/api/players`                             | GET    | None                                                  | `[{ "id": "player_id", "name": "player_name", "price": 100, "attributes": "player_attributes", "clubs": "player_clubs", "ratings": 90 }]`                  |
+| `/api/players?leagueId={leagueId}`         | GET    | `leagueId` (string)                                     | Filtered list of player objects based on the specified league      |
+| `/api/players/:playerId`                   | GET    | `playerId` (string)                                     | `[{ "id": "player_id", "name": "player_name", "price": 100, "attributes": "player_attributes", "clubs": "player_clubs", "ratings": 90 }]`                  |
+| `/api/squads`                              | POST   | `userId` (string), `name` (string)                        | `[{ "id": "squad_id", "name": "squad_name", "players": [] }]`                                            |
+| `/api/users/:userId/squads`                | GET    | `userId` (string)                                       | List of user's squad objects                                       |
+| `/api/squads/:squadId`                     | PATCH  | `squadId` (string)                                      | `[{ "id": "squad_id", "name": "squad_name", "players": [] }]`                                            |
+| `/api/squads/:squadId`                     | DELETE | `squadId` (string)                                      | Success message or status code                                     |
+| `/api/users/:userId/profile`               | PATCH  | `userId` (string), `username` (string), `profilePicture` (file), `gamingPlatform` (string), `bio` (string) | `[{ "id": "user_id", "username": "username", "bio": "bio", "profilePicture": "profile_picture_url", "gamingPlatform": "gaming_platform" }]` |
+| `/api/users/logout`                        | POST   | None                                                  | Success message or status code                                      |
 
 Please try copying and pasting this formatted table into your document, and let me know if you encounter any further issues.
 
