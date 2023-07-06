@@ -35,9 +35,7 @@
    ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
 7. Screenshot of Schema (Figma)
-   - Include relationships and any other info
-   - Include what validations you will be using
-   - Include an example of seed data
+![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
 8. A list of the app's API routes, including:
    - API route (localhost:3000/example)
