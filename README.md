@@ -1,12 +1,12 @@
-# Capstone Project Pitch: FutHut
+## ⚽️ FutHut
 
-1. Description 
+# 💻 Description 
    - FutHut revolutionizes FIFA Ultimate Team by providing users with a web app that simplifies squad building for a more convenient and engaging experience.
 
-2. GitHub Repository  
+# 📂 GitHub Repository  
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
 
-3. User Stories
+# 📚 User Stories
    - As a user, I want to have the ability to:
       - Register an account with my username, email, and password.
       - Log in to my account using my username and password.
@@ -21,7 +21,7 @@
       - Benefit from data validations to ensure the provided data is valid and consistent.
       - Log out of my account.
 
-4. Wireframe (Figma)  
+# 🎨 Wireframe (Figma)  
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Home.PNG)
 ![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20My%20FutHut.PNG)
 ![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Player%20by%20ID.PNG)
@@ -31,20 +31,50 @@
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20Out.PNG)
 
 
-6. React Components Tree  
+# 🌳 React Components Tree  
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
-7. Schema
+# ↔️ Schema
+- Diagram  
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
-8. API Routes  
+- React Routes
+  - Home: Renders the Home component.
+    - Route: /
+      - Component: Home
+      
+    - Players: Renders the Players component, displaying a list of available players.
+      - Route: /players
+      - Component: Players
+      
+    - Player by ID: Renders the PlayerByID component, showing detailed information about a specific player.
+      - Route: /player/:playerId
+      - Component: PlayerByID
+
+    - Leagues: Renders the Leagues component, displaying a list of available leagues and the ability to filter players by league.
+      - Route: /leagues
+      - Component: Leagues
+
+    - My FutHut: Renders the MyFutHut component, displaying the user's profile, active squad, and squad list.
+      - Route: /myfuthut
+      - Component: MyFutHut
+
+    - Sign In: Renders the SignIn component, allowing users to log in to their accounts.
+      - Route: /signin
+      - Component: SignIn
+
+    - Sign Up: Renders the SignUp component, allowing users to register a new account.
+      - Route: /signup
+      - Component: SignUp
+
+# 🛠️ API Routes  
 ![API Routes](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20API%20Routes.PNG)
 
-10. Stretch Goals
-   - Let users filter players by additional attributes
-   - Render graphs showing market price trends for a given player
-   - Implement a drag-and-drop feature for adding players to a squad
+# 🎯 Stretch Goals
+- Let users filter players by additional attributes
+- Render graphs showing market price trends for a given player
+- Implement a drag-and-drop feature for adding players to a squad
 
-11. Kanban Board
+# 📌 Kanban Board
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%201.PNG)
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%202.PNG)
