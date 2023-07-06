@@ -7,7 +7,7 @@
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
 
 ## 📚 User Stories
-   - As a user, I want to have the ability to:
+   - **As a user, I want to have the ability to:**
       - Register an account with my username, email, and password.
       - Log in to my account using my username and password.
       - View a list of available players, including their names, price, attributes, clubs, and ratings. This list can be filtered by league.
@@ -35,10 +35,10 @@
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
 ## ↔️ Schema
-- Diagram  
+- **Diagram**  
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
-- React Routes
+- **React Routes**
    - **Home:** Renders the Home component.
       - Route: /
       - Component: Home
