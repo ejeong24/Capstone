@@ -1,9 +1,9 @@
 # Capstone Project Pitch: FutHut
 
-1. A one sentence description of the app  
+1. Description 
    - FutHut revolutionizes FIFA Ultimate Team by providing users with a socially-driven web app that simplifies squad building, testing, and sharing for a more convenient and engaging experience.
 
-2. A link to the GitHub repo  
+2. GitHub Repository  
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
 
 3. User Stories
@@ -31,20 +31,20 @@
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/raw/main/FutHut%20Sign%20Out.PNG)
 
 
-6. Diagram of React components
+6. React Components Tree
    ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
-7. Screenshot of Schema (Figma)
+7. Schema
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
-8. A list of the app's API routes, including:
+8. API Routes  
 ![API Routes](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20API%20Routes.PNG)
 
-10. Three stretch goals
+10. Stretch Goals
    - Let users filter players by additional attributes
    - Render graphs showing market price trends for a given player
    - Implement a drag-and-drop feature for adding players to a squad
 
-11. A Kanban board
+11. Kanban Board
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%201.PNG)
 ![Kanban Board - Page 1](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Kanban%202.PNG)
