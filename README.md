@@ -1,7 +1,7 @@
 # Capstone Project Pitch: FutHut
 
 1. Description 
-   - FutHut revolutionizes FIFA Ultimate Team by providing users with a web app that simplifies squad building, testing, and sharing for a more convenient and engaging experience.
+   - FutHut revolutionizes FIFA Ultimate Team by providing users with a web app that simplifies squad building for a more convenient and engaging experience.
 
 2. GitHub Repository  
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
