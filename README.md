@@ -39,31 +39,31 @@
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
 
 - React Routes
-  - Home: Renders the Home component.
-    - Route: /
+   - **Home:** Renders the Home component.
+      - Route: /
       - Component: Home
       
-    - Players: Renders the Players component, displaying a list of available players.
+   - **Players:** Renders the Players component, displaying a list of available players.
       - Route: /players
       - Component: Players
       
-    - Player by ID: Renders the PlayerByID component, showing detailed information about a specific player.
+   - **Player by ID:** Renders the PlayerByID component, showing detailed information about a specific player.
       - Route: /player/:playerId
       - Component: PlayerByID
 
-    - Leagues: Renders the Leagues component, displaying a list of available leagues and the ability to filter players by league.
+   - **Leagues:** Renders the Leagues component, displaying a list of available leagues and the ability to filter players by league.
       - Route: /leagues
       - Component: Leagues
-
-    - My FutHut: Renders the MyFutHut component, displaying the user's profile, active squad, and squad list.
+   
+   - **My FutHut:** Renders the MyFutHut component, displaying the user's profile, active squad, and squad list.
       - Route: /myfuthut
       - Component: MyFutHut
-
-    - Sign In: Renders the SignIn component, allowing users to log in to their accounts.
+        
+   - **Sign In:** Renders the SignIn component, allowing users to log in to their accounts.
       - Route: /signin
       - Component: SignIn
-
-    - Sign Up: Renders the SignUp component, allowing users to register a new account.
+        
+   - **Sign Up:** Renders the SignUp component, allowing users to register a new account.
       - Route: /signup
       - Component: SignUp
 
