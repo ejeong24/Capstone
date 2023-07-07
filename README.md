@@ -36,7 +36,7 @@
 
 ## ↔️ Schema
 - **Diagram**  
-![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema.PNG)
+![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema%20Diagram.PNG)
 
 - **React Routes**
    - **Home:** Renders the Home component.
@@ -50,6 +50,18 @@
    - **Player by ID:** Renders the PlayerByID component, showing detailed information about a specific player.
       - Route: /player/:playerId
       - Component: PlayerByID
+    
+   - **Squad by ID:** Renders the SquadByID component, displaying detailed information about a specific squad and the players included in that squad.
+      - Route: /squad/:squadId
+      - Component: SquadByID
+
+   - **Create Squad:** Renders the CreateSquad component, allowing users to create a new squad and associate players with it.
+      - Route: /squad/create
+      - Component: CreateSquad
+
+   - **Edit Squad:** Renders the EditSquad component, allowing users to edit the information of a specific squad, including adding or removing players.
+      - Route: /squad/edit/:squadId
+      - Component: EditSquad
 
    - **Leagues:** Renders the Leagues component, displaying a list of available leagues and the ability to filter players by league.
       - Route: /leagues
