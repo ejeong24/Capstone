@@ -22,16 +22,17 @@ class User(db.Model, SerializerMixin):
     bio = db.Column(db.String)
     
     #relationships
-    
+    squads = db.relationship('Squad', back_populates='user')
     
     #serialization
-    
+    serialize_rules = ('-squads.user',)
     
     #representation
-
+    def __repr__(self):
+        return f"<User(id={self.id}, username='{self.username}', email='{self.email}')>"
 
 class Squad(db.Model, SerializerMixin):
-    __tablename__ = 'squads '
+    __tablename__ = 'squads'
 
     #columns
     id = db.Column(db.String, primary_key=True)
@@ -41,13 +42,16 @@ class Squad(db.Model, SerializerMixin):
     
     
     #relationships
-    
+    user = db.relationship('User', back_populates='squads')
+    squadPlayers = db.relationship('SquadPlayer', back_populates='squad')
+    players = db.relationship('Player', secondary='squadPlayers', back_populates='squads')
     
     #serialization
-    
+    serialize_rules = ('-users.squad',)
     
     #representation
-
+    def __repr__(self):
+        return f"<Squad(id={self.id}, name='{self.name}')>"
 
 class Player(db.Model, SerializerMixin):
     __tablename__ = 'players'
@@ -58,17 +62,20 @@ class Player(db.Model, SerializerMixin):
     price = db.Column(db.Integer)
     attributes = db.Column(db.String)
     club = db.Column(db.String)
-    rating = db.Column()
+    rating = db.Column(db.Integer)
     leagueId = db.Column(db.String, db.ForeignKey('leagues.id'))
     
     #relationships
-    
+    league = db.relationship('League', back_populates='players')
+    squadPlayers = db.relationship('SquadPlayer', back_populates='player')
     
     #serialization
-    
+    serialize_rules = ('-leagues.player',)
     
     #representation
-    
+    def __repr__(self):
+        return f"<Player(id={self.id}, name='{self.name}', club='{self.club}')>"
+
     
 class SquadPlayer(db.Model, SerializerMixin):
     __tablename__ = 'squadPlayers'
@@ -79,12 +86,15 @@ class SquadPlayer(db.Model, SerializerMixin):
     playerId = db.Column(db.String, db.ForeignKey('players.id'))
     
     #relationships
-    
+    player = db.relationship('Player', back_populates='squadPlayers')
+    squads = db.relationship('Squad', back_populates='squadPlayers')
     
     #serialization
     
     
     #representation
+    def __repr__(self):
+        return f"<SquadPlayer(id={self.id}, userId='{self.userId}', playerId='{self.playerId}')>"
 
 
 class League(db.Model, SerializerMixin):
@@ -96,11 +106,12 @@ class League(db.Model, SerializerMixin):
     clubs = db.Column(db.String)
     
     #relationships 
-    
+    players = db.relationship('Player', back_populates='league')
     
     #serialization
-    
+    serialize_rules = ('-players.league',)
     
     #representation
-    
+    def __repr__(self):
+        return f"<League(id={self.id}, name='{self.name}')>"
  
