@@ -1,6 +1,6 @@
 import React from 'react';
-import RegistrationForm from './RegistrationForm';
-import NavBar from './NavBar';
+import RegistrationForm from '../components/RegistrationForm';
+import NavBar from '../components/NavBar';
 
 // Home component
 function Home() {
