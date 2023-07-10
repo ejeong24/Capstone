@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // SquadItem component
 function SquadItem({ squad }) {
@@ -9,3 +9,5 @@ function SquadItem({ squad }) {
     </li>
   );
 }
+
+export default SquadItem;

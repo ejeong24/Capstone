@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Profile from '../components/Profile';
+import ActiveSquad from '../components/ActiveSquad';
+import SquadList from '../components/SquadList';
 
 // MyFutHut component
 function MyFutHut() {

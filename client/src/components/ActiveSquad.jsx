@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SquadItem from '../components/SquadItem';
 
 // ActiveSquad component
 function ActiveSquad() {
@@ -23,3 +24,5 @@ function ActiveSquad() {
     </div>
   );
 }
+
+export default ActiveSquad;

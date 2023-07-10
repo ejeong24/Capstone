@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LeagueList from './LeagueList';
-import PlayerList from './PlayerList';
+import LeagueList from '../components/LeagueList';
+import PlayerList from '../components/PlayerList';
 
 // Leagues component
 function Leagues() {
