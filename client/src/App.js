@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import SignIn from './SignIn';
+import SignOut from './SignOut';
 
+// Parent component
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    // Perform login logic
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    // Perform logout logic
+    setIsLoggedIn(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>My App</h1>
       </header>
+      <main>
+        {isLoggedIn ? (
+          <div>
+            <h2>Welcome, User!</h2>
+            <SignOut handleLogout={handleLogout} />
+          </div>
+        ) : (
+          <div>
+            <h2>Please sign in:</h2>
+            <SignIn handleLogin={handleLogin} />
+          </div>
+        )}
+      </main>
+      <footer>
+        <p>© 2023 FutHut. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

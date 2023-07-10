@@ -45,12 +45,30 @@ def login():
 
 @app.route('/players', methods=['GET'])
 def players():
-    url = 'https://futdb.app/api/players'
+    page = request.args.get('page', default=1, type=int)
+    per_page = request.args.get('per_page', default=10, type=int)
+    url = f'https://futdb.app/api/players?page={page}&itemsPerPage={per_page}'
     headers = {
         'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7'
     }
     response = requests.get(url, headers=headers)
-    return response.json()
+    data = response.json()
+
+    pagination = {
+        'countCurrent': len(data),
+        'countTotal': response.headers.get('x-pagination-count'),
+        'pageCurrent': int(response.headers.get('x-pagination-page')),
+        'pageTotal': int(response.headers.get('x-pagination-total-pages')),
+        'itemsPerPage': int(response.headers.get('x-pagination-per-page'))
+    }
+
+    result = {
+        'data': data,
+        'pagination': pagination
+    }
+
+    return jsonify(result)
+
 
 @app.route('/players/<string:playerId>', methods=['GET'])
 def players_by_id(playerId):

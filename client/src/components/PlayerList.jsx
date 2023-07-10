@@ -12,13 +12,21 @@ function PlayerList({ leagueId }) {
       .catch(error => console.error(error));
   }, [leagueId]);
 
+  const handleAddToActiveSquad = playerId => {
+    // Perform logic to add the player to the active squad
+    console.log('Adding player to active squad:', playerId);
+  };
+
   return (
     <ul>
       {players.map(player => (
-        <li key={player.id}>{player.name}</li>
+        <li key={player.id}>
+          {player.name}
+          <button onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
+        </li>
       ))}
     </ul>
   );
 }
 
-export default LeagueList;
+export default PlayerList;
