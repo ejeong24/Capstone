@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // LeagueList component
-function LeagueList() {
+function LeagueList({ handleLeagueClick }) {
   const [leagues, setLeagues] = useState([]);
 
   useEffect(() => {
@@ -16,10 +16,12 @@ function LeagueList() {
     <ul>
       {leagues.map(league => (
         <li key={league.id}>
-          <h3>{league.name}</h3>
-          <PlayerList leagueId={league.id} />
+          {league.name}
+          <button onClick={() => handleLeagueClick(league.id)}>View Players</button>
         </li>
       ))}
     </ul>
   );
 }
+
+export default LeagueList;
