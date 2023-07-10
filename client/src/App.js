@@ -1,50 +1,30 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Players from './pages/Players';
 import Leagues from './pages/Leagues';
 import MyFutHut from './pages/MyFutHut';
-import SignIn from './pages/SignIn';
 
-// NavBar component
-function NavBar() {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/players">Players</Link>
-        </li>
-        <li>
-          <Link to="/leagues">Leagues</Link>
-        </li>
-        <li>
-          <Link to="/myfuthut">My FutHut</Link>
-        </li>
-        <li>
-          <Link to="/signin">Sign In/Sign Out</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
+// Parent component
 function App() {
   return (
-    <BrowserRouter>
-      <div>
-        <NavBar />
-        <Routes>
-          <Route path="/" exact component={Home} />
-          <Route path="/players" component={Players} />
-          <Route path="/leagues" component={Leagues} />
-          <Route path="/myfuthut" component={MyFutHut} />
-          <Route path="/signin" component={SignIn} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/players">
+          <Players />
+        </Route>
+        <Route path="/leagues">
+          <Leagues />
+        </Route>
+        <Route path="/myfuthut">
+          <MyFutHut />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
