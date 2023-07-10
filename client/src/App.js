@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Players from './pages/Players';
 import Leagues from './pages/Leagues';
 import MyFutHut from './pages/MyFutHut';
+import SignIn from './pages/SignIn';
+import SignOut from './pages/SignOut';
 
 // Parent component
 function App() {
@@ -22,6 +24,12 @@ function App() {
         </Route>
         <Route path="/myfuthut">
           <MyFutHut />
+        </Route>
+        <Route path="/signin">
+          <SignIn />
+        </Route>
+        <Route path="/signout">
+          <SignOut />
         </Route>
       </Switch>
     </Router>
