@@ -73,31 +73,37 @@ def login():
     else:
         return {'message': 'Invalid username or password'}
 
+
 @app.route('/players', methods=['GET'])
 def players():
     page = request.args.get('page', default=1, type=int)
-    per_page = request.args.get('per_page', default=10, type=int)
-    url = f'https://futdb.app/api/players?page={page}&itemsPerPage={per_page}'
+    url = f'https://futdb.app/api/players?page={page}'
+
     headers = {
         'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7'
     }
+
     response = requests.get(url, headers=headers)
+
     data = response.json()
+    players = [player['name'] for player in data['items']]
 
     pagination = {
-        'countCurrent': len(data),
-        'countTotal': response.headers.get('x-pagination-count'),
-        'pageCurrent': int(response.headers.get('x-pagination-page')),
-        'pageTotal': int(response.headers.get('x-pagination-total-pages')),
-        'itemsPerPage': int(response.headers.get('x-pagination-per-page'))
+        'countCurrent': data['pagination']['countCurrent'],
+        'countTotal': data['pagination']['countTotal'],
+        'pageCurrent': data['pagination']['pageCurrent'],
+        'pageTotal': data['pagination']['pageTotal'],
+        'itemsPerPage': data['pagination']['itemsPerPage']
     }
 
     result = {
-        'data': data,
+        'players': players,
         'pagination': pagination
     }
 
     return jsonify(result)
+
+
 
 
 @app.route('/players/<string:playerId>', methods=['GET'])
