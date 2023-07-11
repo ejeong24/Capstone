@@ -1,31 +1,54 @@
 import React, { useEffect, useState } from 'react';
 
-// PlayerList component
-function PlayerList({ leagueId }) {
+function PlayerList() {
   const [players, setPlayers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    // Simulating API call to fetch player data for a specific league
-    fetch(`/api/leagues/${leagueId}/players`)
-      .then(response => response.json())
-      .then(data => setPlayers(data))
-      .catch(error => console.error(error));
-  }, [leagueId]);
+    fetchPlayers(currentPage);
+  }, [currentPage]);
 
-  const handleAddToActiveSquad = playerId => {
+  const fetchPlayers = (page) => {
+    fetch(`/players?page=${page}`)
+      .then(response => response.json())
+      .then(data => {
+        setPlayers(data.players);
+        setTotalPages(data.pagination.pageTotal);
+      })
+      .catch(error => console.error(error));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(prevPage => prevPage - 1);
+  };
+
+  const handleAddToActiveSquad = (playerId) => {
     // Perform logic to add the player to the active squad
     console.log('Adding player to active squad:', playerId);
   };
 
   return (
-    <ul>
-      {players.map(player => (
-        <li key={player.id}>
-          {player.name}
-          <button onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {players.map(player => (
+          <li key={player}>
+            {player}
+            <button onClick={() => handleAddToActiveSquad(player)}>Add to Active Squad</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+        Previous Page
+      </button>
+      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        Next Page
+      </button>
+    </div>
   );
 }
 
