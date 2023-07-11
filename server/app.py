@@ -2,7 +2,7 @@ from flask import Flask, request, session, make_response, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from config import app, db, api, Resource
-from models import User, Squad, Player
+from models import User, Squad, Player, League
 
 import requests
 
@@ -26,6 +26,36 @@ def register():
     db.session.commit()
 
     return {'message': 'User registered successfully'}
+
+@app.route('/leagues', methods=['GET'])
+def leagues():
+    page = request.args.get('page', default=1, type=int)
+    url = f'https://futdb.app/api/leagues?page={page}'
+
+    headers = {
+        'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7'
+    }
+
+    response = requests.get(url, headers=headers)
+    data = response.json()
+
+    leagues = [league['name'] for league in data['items']]
+
+    pagination = {
+        'countCurrent': data['pagination']['countCurrent'],
+        'countTotal': data['pagination']['countTotal'],
+        'pageCurrent': data['pagination']['pageCurrent'],
+        'pageTotal': data['pagination']['pageTotal'],
+        'itemsPerPage': data['pagination']['itemsPerPage']
+    }
+
+    result = {
+        'leagues': leagues,
+        'pagination': pagination
+    }
+
+    return jsonify(result)
+
 
 @app.route('/users/login', methods=['POST'])
 def login():
