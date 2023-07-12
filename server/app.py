@@ -104,6 +104,32 @@ def players():
     return jsonify(result)
 
 
+@app.route('/players/search', methods=['POST'])
+def search_players():
+    league_id = request.json.get('league')
+
+    url = 'https://futdb.app/api/players/search'
+    headers = {
+        'accept': 'application/json',
+        'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7',
+        'Content-Type': 'application/json'
+    }
+    body = {
+        'league': league_id
+    }
+    response = requests.post(url, headers=headers, json=body)
+    if response.status_code == 200:
+        data = response.json()
+        pagination = data['pagination']
+        players = data['items']
+        result = {
+            'pagination': pagination,
+            'players': players
+        }
+        return jsonify(result)
+    else:
+        return jsonify(error='API request failed'), 400
+
 
 
 @app.route('/players/<string:playerId>', methods=['GET'])
