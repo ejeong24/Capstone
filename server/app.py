@@ -17,11 +17,13 @@ def index():
 def register():
     data = request.get_json()
     username = data.get('username')
+    firstName = data.get('firstName')
+    lastName = data.get('lastName')
     email = data.get('email')
     password = data.get('password')
 
     # Perform user registration logic and save to database
-    user = User(username=username, email=email, password=password)
+    user = User(username=username, firstName=firstName, lastName=lastName, email=email, password=password)
     db.session.add(user)
     db.session.commit()
 

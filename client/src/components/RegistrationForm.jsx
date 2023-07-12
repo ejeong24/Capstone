@@ -20,17 +20,38 @@ function RegistrationForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // Perform registration logic with formData
-    console.log(formData);
-    // Reset form fields
-    setFormData({
-      username: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-    });
+  
+    // Prepare the request body with the form data
+    const requestBody = JSON.stringify(formData);
+  
+    // Send the POST request to the server
+    fetch('/users/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: requestBody
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response from the server
+        console.log(data); // You can do something with the response if needed
+  
+        // Reset form fields
+        setFormData({
+          username: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle the error if necessary
+      });
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
