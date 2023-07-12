@@ -9,13 +9,13 @@ function Profile() {
 
   useEffect(() => {
     // Simulating API call to fetch user profile data
-    fetch('/api/profile')
+    fetch('/profile')
       .then(response => response.json())
       .then(data => setUserProfile(data))
       .catch(error => console.error(error));
 
     // Simulating API call to fetch user's squads data
-    fetch('/api/squads')
+    fetch('/squads')
       .then(response => response.json())
       .then(data => setSquads(data))
       .catch(error => console.error(error));
