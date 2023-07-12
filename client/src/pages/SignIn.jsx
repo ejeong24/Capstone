@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
+import NavBar from '../components/NavBar';
 
 // SignIn component
 function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [userState, setUserState] = useState();
 
   const handleSignIn = () => {
     // Perform sign in logic with the username and password
     console.log('Signing in with username:', username);
     console.log('Signing in with password:', password);
-    // ...
+    setUserState({
+      username: username,
+      signedIn: true
+    });
   };
+
 
   return (
     <div>
+      <NavBar />
       <h3>Sign In</h3>
       <div>
         <label htmlFor="username">Username:</label>
@@ -34,8 +41,15 @@ function SignIn() {
         />
       </div>
       <button onClick={handleSignIn}>Sign In</button>
+      {userState && (
+        <div>
+          <p>Welcome, {userState.username}!</p>
+          <p>You are signed in.</p>
+        </div>
+      )}
     </div>
   );
 }
+
 
 export default SignIn;
