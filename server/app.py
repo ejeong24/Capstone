@@ -39,7 +39,7 @@ def leagues():
     response = requests.get(url, headers=headers)
     data = response.json()
 
-    leagues = [league['name'] for league in data['items']]
+    leagues = [{'id': league['id'], 'name': league['name']} for league in data['items']]
 
     pagination = {
         'countCurrent': data['pagination']['countCurrent'],
@@ -55,6 +55,7 @@ def leagues():
     }
 
     return jsonify(result)
+
 
 
 @app.route('/users/login', methods=['POST'])
