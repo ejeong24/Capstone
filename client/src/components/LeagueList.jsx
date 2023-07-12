@@ -14,6 +14,7 @@ function LeagueList({ handleLeagueClick }) {
     fetch(`/leagues?page=${page}`)
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setLeagues(data.leagues);
         setTotalPages(data.pagination.pageTotal);
       })
