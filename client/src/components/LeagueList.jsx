@@ -31,10 +31,10 @@ function LeagueList({ handleLeagueClick }) {
   return (
     <div>
       <ul>
-        {leagues.map((league, index) => (
+        {leagues && leagues.map((league, index) => (
           <li key={index}>
-            {league}
-            <button onClick={() => handleLeagueClick(index)}>View Players</button>
+            {league.name}
+            <button onClick={() => handleLeagueClick(league.id)}>View Players</button>
           </li>
         ))}
       </ul>
@@ -47,5 +47,6 @@ function LeagueList({ handleLeagueClick }) {
     </div>
   );
 }
+
 
 export default LeagueList;
