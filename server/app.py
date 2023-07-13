@@ -216,7 +216,7 @@ def get_user_squads(userID):
         return {'message': 'Error retrieving user squads'}, 500
         
 
-@app.route('/squads/<int:squadID>', methods=['PATCH'])
+@app.route('/squads/<int:squadID>/edit', methods=['PATCH'])
 def edit_squad(squadID):
     new_squad_name = request.json['new_squad_name']
 
@@ -227,7 +227,7 @@ def edit_squad(squadID):
 
     return {'message': 'Squad edited successfully'}
 
-@app.route('/squads/<int:squadID>', methods=['DELETE'])
+@app.route('/squads/<int:squadID>/delete', methods=['DELETE'])
 def delete_squad(squadID):
     # Perform squad deletion logic in the database
     squad = Squad.query.get(squadID)
