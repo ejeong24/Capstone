@@ -10,7 +10,7 @@ function SquadList({ userState }) {
     fetch(`/users/${userState.id}/squads`)
       .then(response => response.json())
       .then(data => {
-        setSquads(data.squads)
+        setSquads(data)
         console.log(data)
       })
       .catch(error => console.error(error));
