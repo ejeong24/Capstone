@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function PlayerList() {
+function PlayerList({handleAddToActiveSquad}) {
   const [players, setPlayers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -28,18 +28,13 @@ function PlayerList() {
     setCurrentPage(prevPage => prevPage - 1);
   };
 
-  const handleAddToActiveSquad = (playerId) => {
-    // Perform logic to add the player to the active squad
-    console.log('Adding player to active squad:', playerId);
-  };
-
   return (
     <div>
       <ul>
         {players.map(player => (
           <li key={player.resourceId}>
             {player.name}
-            <button onClick={() => handleAddToActiveSquad(player)}>Add to Active Squad</button>
+            <button onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
           </li>
         ))}
       </ul>
