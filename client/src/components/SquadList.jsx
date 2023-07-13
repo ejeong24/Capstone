@@ -7,7 +7,7 @@ function SquadList() {
 
   useEffect(() => {
     // Simulating API call to fetch user's squads data
-    fetch('/api/squads')
+    fetch('/squads')
       .then(response => response.json())
       .then(data => setSquads(data))
       .catch(error => console.error(error));

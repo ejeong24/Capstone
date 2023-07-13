@@ -63,6 +63,7 @@ def leagues():
 @app.route('/users/login', methods=['POST'])
 def login():
     data = request.get_json()
+    id = data.get('id')
     username = data.get('username')
     password = data.get('password')
 
