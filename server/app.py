@@ -157,20 +157,6 @@ def players_by_id(playerId):
     response = requests.get(url, headers=headers)
     return response.json()
 
-
-@app.route('/squads', methods=['POST'])
-def create_squad():
-    data = request.get_json()
-    squad_name = data.get('squad_name')
-    user_id = data.get('user_id')
-
-    # Perform squad creation logic and save to database
-    squad = Squad(name=squad_name, user_id=user_id)
-    db.session.add(squad)
-    db.session.commit()
-
-    return {'message': 'Squad created successfully'}
-
 @app.route('/users/<int:user_id>/squads/activeSquad', methods=['GET'])
 def get_active_squad(user_id):
     try:
@@ -200,6 +186,19 @@ def add_player_to_squad(user_id, squad_id):
     db.session.commit()
 
     return {'message': 'Player added to squad successfully'}, 200
+
+@app.route('/squads', methods=['POST'])
+def create_squad():
+    data = request.get_json()
+    squad_name = data.get('squad_name')
+    user_id = data.get('user_id')
+
+    # Perform squad creation logic and save to database
+    squad = Squad(name=squad_name, user_id=user_id)
+    db.session.add(squad)
+    db.session.commit()
+
+    return {'message': 'Squad created successfully'}
 
 @app.route('/users/<int:userID>/squads', methods=['GET'])
 def get_user_squads(userID):
