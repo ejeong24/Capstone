@@ -10,6 +10,9 @@ function Players() {
   const handleAddToActiveSquad = (playerId) => {
     // Perform logic to add the player to the active squad
     console.log('Adding player to active squad:', playerId);
+    console.log(JSON.stringify({
+      player_id: playerId,
+    }));
 
     // Fetch the user's squads
     fetch(`/users/${userState.id}/squads`)
@@ -26,6 +29,8 @@ function Players() {
 
         // Add the player to the first squad
         const squadId = data[0]['id'];
+        console.log(`userId: ${userState.id}, squadId: ${squadId}, playerId: ${playerId}`);
+
 
         fetch(`/users/${userState.id}/squads/${squadId}/add-player`, {
           method: 'POST',
@@ -33,7 +38,7 @@ function Players() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: playerId,
+            player_id: playerId
           })
         })
           .then(response => {

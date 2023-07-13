@@ -2,7 +2,7 @@ from flask import Flask, request, session, make_response, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from config import app, db, api, Resource
-from models import User, Squad, Player, League
+from models import User, Squad, Player, League, SquadPlayer
 
 import requests
 
@@ -171,31 +171,19 @@ def create_squad():
 
     return {'message': 'Squad created successfully'}
 
-@app.route('/users/<int:userID>/squads/<int:squadID>/add-player', methods=['POST'])
-def add_player_to_squad(userID, squadID):
+@app.route('/users/<int:user_id>/squads/<int:squad_id>/add-player', methods=['POST'])
+def add_player_to_squad(user_id, squad_id):
+    player_id = request.json.get('player_id')
+    if not player_id:
+        return {'error': 'Player ID is required'}, 400
+    if not user_id:
+        return {'error': 'User ID is required'}, 400
 
-    data = request.get_json()
-    player_id = data.get('id')
-
-    # Check if the user and squad exist
-    user = User.query.filter_by(id = userID)
-    if not user:
-        return {'message': 'User not found'}, 404
-
-    squad = Squad.query.filter_by(id = squadID)
-    if not squad:
-        return {'message': 'Squad not found'}, 404
-
-    # Check if the player exists
-    player = Player.query.filter_by(id = player_id).first()
-    if not player:
-        return {'message': 'Player not found'}, 404
-
-    # Perform the logic to add the player to the squad
-    squad.players.append(player)
+    new_squad_player = SquadPlayer(squad_id=squad_id, player_id=player_id)
+    db.session.add(new_squad_player)
     db.session.commit()
 
-    return {'message': 'Player added to the squad successfully'}
+    return {'message': 'Player added to squad successfully'}, 200
 
 @app.route('/users/<int:userID>/squads', methods=['GET'])
 def get_user_squads(userID):
