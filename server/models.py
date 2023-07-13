@@ -8,7 +8,6 @@ from flask_login import UserMixin, LoginManager
 
 from config import db
 
-
 class User(UserMixin, db.Model, SerializerMixin):
     __tablename__ = 'users'
     
@@ -34,7 +33,7 @@ class Squad(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     
     user = db.relationship('User', back_populates='squads')
-    squad_players = db.relationship('SquadPlayer', back_populates='squad')
+    squad_players = db.relationship('SquadPlayer', back_populates='squad', cascade='all, delete-orphan')
     players = association_proxy('squad_players', 'player')
     
     serialize_rules = ('-user.squads',)
@@ -60,7 +59,7 @@ class Player(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Player(id={self.id}, name={self.name}, club={self.club}, league_id={self.league_id})>'
-    
+
 class League(db.Model, SerializerMixin):
     __tablename__ = 'leagues'
 
@@ -72,7 +71,7 @@ class League(db.Model, SerializerMixin):
     serialize_rules = ('-players.league',)
     
     def __repr__(self):
-        return f'<League(id={self.id}, name={self.name}, clubs={self.clubs})>'  
+        return f'<League(id={self.id}, name={self.name}, clubs={self.clubs})>'
 
 class SquadPlayer(db.Model, SerializerMixin):
     __tablename__ = 'squad_players'
@@ -80,7 +79,7 @@ class SquadPlayer(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
-    squad_id = db.Column(db.Integer, db.ForeignKey('squads.id'), nullable=False)
+    squad_id = db.Column(db.Integer, db.ForeignKey('squads.id', ondelete='CASCADE'), nullable=False)
 
     squad = db.relationship('Squad', back_populates='squad_players')
     player = db.relationship('Player', back_populates='squad_players')
