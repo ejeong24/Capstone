@@ -19,7 +19,7 @@ function SquadList({ userState }) {
   return (
     <div>
       <h3>Squad List</h3>
-      {squads.length > 0 ? (
+      {squads && squads.length > 0 ? (
         <ul>
           {squads.map(squad => (
             <SquadItem key={squad.id} squad={squad} />
