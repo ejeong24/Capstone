@@ -173,20 +173,21 @@ def create_squad():
 
 @app.route('/users/<int:userID>/squads/<int:squadID>/add-player', methods=['POST'])
 def add_player_to_squad(userID, squadID):
+
     data = request.get_json()
-    player_id = data.get('player_id')
+    player_id = data.get('id')
 
     # Check if the user and squad exist
-    user = User.query.get(userID)
+    user = User.query.filter_by(id = userID)
     if not user:
         return {'message': 'User not found'}, 404
 
-    squad = Squad.query.get(squadID)
+    squad = Squad.query.filter_by(id = squadID)
     if not squad:
         return {'message': 'Squad not found'}, 404
 
     # Check if the player exists
-    player = Player.query.get(player_id)
+    player = Player.query.filter_by(id = player_id).first()
     if not player:
         return {'message': 'Player not found'}, 404
 
@@ -199,10 +200,17 @@ def add_player_to_squad(userID, squadID):
 @app.route('/users/<int:userID>/squads', methods=['GET'])
 def get_user_squads(userID):
     try:
-        squads = [squad.name for squad in Squad.query.filter(Squad.user_id == userID)]
-        return squads, 200
-    except:
-        return {'error'}, 500
+        squads = []
+        for squad in Squad.query.filter(Squad.user_id == userID):
+            squad_data = {
+                'id': squad.id,
+                'name': squad.name,
+                'players': [player.name for player in squad.players]
+            }
+            squads.append(squad_data)
+        return jsonify(squads)
+    except Exception as e:
+        return {'message': 'Error retrieving user squads'}, 500
         
 
 @app.route('/squads/<int:squadID>', methods=['PATCH'])
