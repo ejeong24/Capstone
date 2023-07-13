@@ -1,8 +1,6 @@
 import React, { useContext, useState } from 'react';
 import NavBar from '../components/NavBar';
 import { UserContext } from '../contexts/UserContext';
-// import { useRouteId } from 'react-router/dist/lib/hooks';
-// import { useHistory } from 'react-router-dom';
 
 // SignIn component
 function SignIn() {
@@ -11,8 +9,6 @@ function SignIn() {
   const [password, setPassword] = useState('');
 
   const handleSignIn = () => {
-    // Perform sign in logic with the username and password
-    // Assuming you make a POST request to your backend API to authenticate the user
     fetch('/users/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
@@ -22,21 +18,19 @@ function SignIn() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        // Assuming the API response includes the user's id
-        const userId = data.userId;
-  
-        const updatedUserState = {
-          id: userId, // Include the id in the updatedUserState
-          username: username,
-          signedIn: true
-        };
-  
-        updateUserState(updatedUserState);
+        if (data.user) {
+          const { id } = data.user; // Extract the id from the user object
+          const updatedUserState = {
+            id: id,
+            username: username,
+            signedIn: true
+          };
+          updateUserState(updatedUserState);
+          console.log(updatedUserState);
+        }
       })
       .catch(error => console.error(error));
   };
-
 
   return (
     <div>
@@ -48,7 +42,7 @@ function SignIn() {
           type="text"
           id="username"
           value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          onChange={event => setUsername(event.target.value)}
         />
       </div>
       <div>
@@ -57,7 +51,7 @@ function SignIn() {
           type="password"
           id="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={event => setPassword(event.target.value)}
         />
       </div>
       <button onClick={handleSignIn}>Sign In</button>
@@ -66,4 +60,3 @@ function SignIn() {
 }
 
 export default SignIn;
-

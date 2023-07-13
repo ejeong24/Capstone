@@ -73,7 +73,14 @@ def login():
     user = User.query.filter_by(username=username, password=password).first()
     if user:
         session['user_id'] = user.id
-        return {'message': 'User logged in successfully'}
+        return {
+            'message': 'User logged in successfully',
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'password': user.password
+            }
+        }
     else:
         return {'message': 'Invalid username or password'}
 
