@@ -22,7 +22,7 @@ function SquadList({ userState }) {
       {squads && squads.length > 0 ? (
         <ul>
           {squads.map(squad => (
-            <div>{squad.name}</div>
+            <SquadItem key={squad.id} squad={squad} />
           ))}
         </ul>
       ) : (
