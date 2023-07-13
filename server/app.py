@@ -27,7 +27,7 @@ def register():
     db.session.add(user)
     db.session.commit()
 
-    return {'message': 'User registered successfully'}
+    return {'message': 'User registered successfully', 'id': user.id}
 
 @app.route('/leagues', methods=['GET'])
 def leagues():
@@ -63,6 +63,7 @@ def leagues():
 @app.route('/users/login', methods=['POST'])
 def login():
     data = request.get_json()
+    id = data.get('id')
     username = data.get('username')
     password = data.get('password')
 
@@ -72,7 +73,14 @@ def login():
     user = User.query.filter_by(username=username, password=password).first()
     if user:
         session['user_id'] = user.id
-        return {'message': 'User logged in successfully'}
+        return {
+            'message': 'User logged in successfully',
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'password': user.password
+            }
+        }
     else:
         return {'message': 'Invalid username or password'}
 
@@ -89,7 +97,12 @@ def players():
     response = requests.get(url, headers=headers)
 
     data = response.json()
-    players = [player['name'] for player in data['items']]
+    players = [{
+        'id': player['id'],
+        'name': player['name'],
+        'resourceId': player['resourceId'],
+        'league': player['league']
+    } for player in data['items']]
 
     pagination = {
         'countCurrent': data['pagination']['countCurrent'],
@@ -144,6 +157,7 @@ def players_by_id(playerId):
     response = requests.get(url, headers=headers)
     return response.json()
 
+
 @app.route('/squads', methods=['POST'])
 def create_squad():
     data = request.get_json()
@@ -151,19 +165,47 @@ def create_squad():
     user_id = data.get('user_id')
 
     # Perform squad creation logic and save to database
-    squad = Squad(name=squad_name, userId=user_id)
+    squad = Squad(name=squad_name, user_id=user_id)
     db.session.add(squad)
     db.session.commit()
 
     return {'message': 'Squad created successfully'}
 
-@app.route('/users/<string:userID>/squads', methods=['GET'])
-def get_user_squads(userID):
-    user = User.query.get(userID)
-    squads = [squad.serialize() for squad in user.squads]
-    return {'squads': squads}
+@app.route('/users/<int:userID>/squads/<int:squadID>/add-player', methods=['POST'])
+def add_player_to_squad(userID, squadID):
+    data = request.get_json()
+    player_id = data.get('player_id')
 
-@app.route('/squads/<string:squadID>', methods=['PATCH'])
+    # Check if the user and squad exist
+    user = User.query.get(userID)
+    if not user:
+        return {'message': 'User not found'}, 404
+
+    squad = Squad.query.get(squadID)
+    if not squad:
+        return {'message': 'Squad not found'}, 404
+
+    # Check if the player exists
+    player = Player.query.get(player_id)
+    if not player:
+        return {'message': 'Player not found'}, 404
+
+    # Perform the logic to add the player to the squad
+    squad.players.append(player)
+    db.session.commit()
+
+    return {'message': 'Player added to the squad successfully'}
+
+@app.route('/users/<int:userID>/squads', methods=['GET'])
+def get_user_squads(userID):
+    try:
+        squads = [squad.name for squad in Squad.query.filter(Squad.user_id == userID)]
+        return squads, 200
+    except:
+        return {'error'}, 500
+        
+
+@app.route('/squads/<int:squadID>', methods=['PATCH'])
 def edit_squad(squadID):
     new_squad_name = request.json['new_squad_name']
 
@@ -174,7 +216,7 @@ def edit_squad(squadID):
 
     return {'message': 'Squad edited successfully'}
 
-@app.route('/squads/<string:squadID>', methods=['DELETE'])
+@app.route('/squads/<int:squadID>', methods=['DELETE'])
 def delete_squad(squadID):
     # Perform squad deletion logic in the database
     squad = Squad.query.get(squadID)
@@ -183,7 +225,7 @@ def delete_squad(squadID):
 
     return {'message': 'Squad deleted successfully'}
 
-@app.route('/users/<string:userID>/profile', methods=['DELETE'])
+@app.route('/users/<int:userID>/profile', methods=['DELETE'])
 def delete_user_profile(userID):
     # Perform user profile deletion logic in the database
     user = User.query.get(userID)
@@ -191,6 +233,26 @@ def delete_user_profile(userID):
     db.session.commit()
 
     return {'message': 'User profile deleted successfully'}
+
+@app.route('/users/<int:userID>/profile', methods=['GET'])
+def get_user_profile(userID):
+    # Retrieve the user profile from the database
+    user = User.query.get(userID)
+
+    # Check if the user exists
+    if not user:
+        return {'message': 'User not found'}, 404
+
+    # Prepare the user profile data to be sent as the response
+    profile_data = {
+        'username': user.username,
+        'firstName': user.firstName,
+        'lastName': user.lastName,
+        'email': user.email
+        # Add more profile data fields as needed
+    }
+
+    return profile_data
 
 @app.route('/users/logout', methods=['POST'])
 def logout():

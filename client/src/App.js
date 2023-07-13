@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Players from './pages/Players';
@@ -9,6 +9,8 @@ import SignOut from './pages/SignOut';
 
 // Parent component
 function App() {
+  const [userState, setUserState] = useState([]);
+  
   return (
     <Router>
       <Switch>
@@ -16,16 +18,16 @@ function App() {
           <Home />
         </Route>
         <Route path="/players">
-          <Players />
+          <Players userState={userState}/>
         </Route>
         <Route path="/leagues">
           <Leagues />
         </Route>
         <Route path="/myfuthut">
-          <MyFutHut />
+          <MyFutHut userState={userState}/>
         </Route>
         <Route path="/signin">
-          <SignIn />
+          <SignIn userState={userState} setUserState={setUserState}/>
         </Route>
         <Route path="/signout">
           <SignOut />

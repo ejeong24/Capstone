@@ -14,6 +14,7 @@ function PlayerList() {
       .then(response => response.json())
       .then(data => {
         setPlayers(data.players);
+        console.log(data.players);
         setTotalPages(data.pagination.pageTotal);
       })
       .catch(error => console.error(error));
@@ -36,8 +37,8 @@ function PlayerList() {
     <div>
       <ul>
         {players.map(player => (
-          <li key={player}>
-            {player}
+          <li key={player.resourceId}>
+            {player.name}
             <button onClick={() => handleAddToActiveSquad(player)}>Add to Active Squad</button>
           </li>
         ))}

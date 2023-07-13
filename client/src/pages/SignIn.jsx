@@ -1,22 +1,36 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import NavBar from '../components/NavBar';
+import { UserContext } from '../contexts/UserContext';
 
 // SignIn component
 function SignIn() {
+  const { updateUserState } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [userState, setUserState] = useState();
 
   const handleSignIn = () => {
-    // Perform sign in logic with the username and password
-    console.log('Signing in with username:', username);
-    console.log('Signing in with password:', password);
-    setUserState({
-      username: username,
-      signedIn: true
-    });
+    fetch('/users/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.user) {
+          const { id } = data.user; // Extract the id from the user object
+          const updatedUserState = {
+            id: id,
+            username: username,
+            signedIn: true
+          };
+          updateUserState(updatedUserState);
+          console.log(updatedUserState);
+        }
+      })
+      .catch(error => console.error(error));
   };
-
 
   return (
     <div>
@@ -41,15 +55,8 @@ function SignIn() {
         />
       </div>
       <button onClick={handleSignIn}>Sign In</button>
-      {userState && (
-        <div>
-          <p>Welcome, {userState.username}!</p>
-          <p>You are signed in.</p>
-        </div>
-      )}
     </div>
   );
 }
-
 
 export default SignIn;

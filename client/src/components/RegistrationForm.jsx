@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
+
 // RegistrationForm component
 function RegistrationForm() {
   const [formData, setFormData] = useState({
+    id: '',
     username: '',
     firstName: '',
     lastName: '',
@@ -20,9 +22,12 @@ function RegistrationForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+
   
     // Prepare the request body with the form data
-    const requestBody = JSON.stringify(formData);
+    const requestBody = JSON.stringify({
+      ...formData
+    });
   
     // Send the POST request to the server
     fetch('/users/register', {
