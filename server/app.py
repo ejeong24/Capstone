@@ -192,8 +192,7 @@ def get_user_squads(userID):
         for squad in Squad.query.filter(Squad.user_id == userID):
             squad_data = {
                 'id': squad.id,
-                'name': squad.name,
-                'players': [player.name for player in squad.players]
+                'name': squad.name
             }
             squads.append(squad_data)
         return jsonify(squads)
