@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SquadItem from '../components/SquadItem';
 
 // ActiveSquad component
-function ActiveSquad() {
+function ActiveSquad({ userState }) {
   const [activeSquad, setActiveSquad] = useState({}); // state to store active squad data from API
 
   useEffect(() => {

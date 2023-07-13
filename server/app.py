@@ -27,7 +27,7 @@ def register():
     db.session.add(user)
     db.session.commit()
 
-    return {'message': 'User registered successfully'}
+    return {'message': 'User registered successfully', 'id': user.id}
 
 @app.route('/leagues', methods=['GET'])
 def leagues():
@@ -151,7 +151,7 @@ def create_squad():
     user_id = data.get('user_id')
 
     # Perform squad creation logic and save to database
-    squad = Squad(name=squad_name, userId=user_id)
+    squad = Squad(name=squad_name, user_id=user_id)
     db.session.add(squad)
     db.session.commit()
 
@@ -191,6 +191,26 @@ def delete_user_profile(userID):
     db.session.commit()
 
     return {'message': 'User profile deleted successfully'}
+
+@app.route('/users/<string:userID>/profile', methods=['GET'])
+def get_user_profile(userID):
+    # Retrieve the user profile from the database
+    user = User.query.get(userID)
+
+    # Check if the user exists
+    if not user:
+        return {'message': 'User not found'}, 404
+
+    # Prepare the user profile data to be sent as the response
+    profile_data = {
+        'username': user.username,
+        'firstName': user.firstName,
+        'lastName': user.lastName,
+        'email': user.email
+        # Add more profile data fields as needed
+    }
+
+    return profile_data
 
 @app.route('/users/logout', methods=['POST'])
 def logout():

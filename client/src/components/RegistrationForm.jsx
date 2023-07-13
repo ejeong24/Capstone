@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 // RegistrationForm component
 function RegistrationForm() {
   const [formData, setFormData] = useState({
+    id: '',
     username: '',
     firstName: '',
     lastName: '',
@@ -20,9 +22,14 @@ function RegistrationForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    const userId = uuidv4();
   
     // Prepare the request body with the form data
-    const requestBody = JSON.stringify(formData);
+    const requestBody = JSON.stringify({
+      ...formData,
+      id: userId,
+    });
   
     // Send the POST request to the server
     fetch('/users/register', {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // Profile component
-function Profile() {
+function Profile({ userState }) {
   const [userProfile, setUserProfile] = useState({});
   const [squads, setSquads] = useState([]);
   const [activeSquad, setActiveSquad] = useState(null);
@@ -11,13 +11,19 @@ function Profile() {
     // Simulating API call to fetch user profile data
     fetch('/profile')
       .then(response => response.json())
-      .then(data => setUserProfile(data))
+      .then(data => {
+        // Assuming the received data is an object with properties name, platform, ign, and bio
+        setUserProfile(data);
+      })
       .catch(error => console.error(error));
-
+  
     // Simulating API call to fetch user's squads data
     fetch('/squads')
       .then(response => response.json())
-      .then(data => setSquads(data))
+      .then(data => {
+        // Assuming the received data is an array of squad objects
+        setSquads(data);
+      })
       .catch(error => console.error(error));
   }, []);
 
@@ -42,10 +48,34 @@ function Profile() {
 
   const handleCreateSquad = event => {
     event.preventDefault();
-    // Perform logic to create a new squad with the provided name
-    console.log('Creating new squad:', newSquadName);
+  
+    // Prepare the data for the API request
+    const data = {
+      squad_name: newSquadName,
+      user_id: userState.id // Replace "userID" with the appropriate property of your userState object
+    };
+  
+    // Send the API request to create a new squad
+    fetch('/squads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        // Handle the response from the API as needed
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle any errors that occur during the API request
+      });
+  
     setNewSquadName('');
   };
+  
 
   return (
     <div>

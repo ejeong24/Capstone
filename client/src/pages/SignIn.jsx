@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 
 // SignIn component
-function SignIn() {
+function SignIn({ userState, setUserState }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [userState, setUserState] = useState();
 
   const handleSignIn = () => {
     // Perform sign in logic with the username and password

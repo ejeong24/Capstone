@@ -5,13 +5,13 @@ import SquadList from '../components/SquadList';
 import NavBar from '../components/NavBar';
 
 // MyFutHut component
-function MyFutHut() {
+function MyFutHut( {userState} ) {
     return (
       <div>
         <NavBar />
         <h2>My FutHut</h2>
-        <Profile />
-        <ActiveSquad />
+        <Profile userState = {userState} />
+        <ActiveSquad userState = {userState} />
         <SquadList />
       </div>
     );
