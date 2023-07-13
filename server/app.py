@@ -231,10 +231,17 @@ def edit_squad(squadID):
 def delete_squad(squadID):
     # Perform squad deletion logic in the database
     squad = Squad.query.get(squadID)
-    db.session.delete(squad)
-    db.session.commit()
+    if squad:
+        try:
+            db.session.delete(squad)
+            db.session.commit()
+            return {'message': 'Squad deleted successfully'}
+        except Exception as e:
+            db.session.rollback()  # rollback the changes on error
+            return {"error": str(e)}, 500  # return the error message
+    else:
+        return {"error": f"No squad found with id {squadID}"}, 404
 
-    return {'message': 'Squad deleted successfully'}
 
 @app.route('/users/<int:userID>/profile', methods=['DELETE'])
 def delete_user_profile(userID):
