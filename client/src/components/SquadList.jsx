@@ -10,7 +10,7 @@ function SquadList({ userState }) {
     fetch(`/users/${userState.id}/squads`)
       .then(response => response.json())
       .then(data => {
-        setSquads(data.squads)
+        setSquads(data)
         console.log(data)
       })
       .catch(error => console.error(error));
@@ -22,7 +22,7 @@ function SquadList({ userState }) {
       {squads && squads.length > 0 ? (
         <ul>
           {squads.map(squad => (
-            <SquadItem key={squad.id} squad={squad} />
+            <div>{squad.name}</div>
           ))}
         </ul>
       ) : (

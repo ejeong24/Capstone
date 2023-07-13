@@ -7,7 +7,7 @@ function ActiveSquad({ userState }) {
 
   useEffect(() => {
     // Simulating API call to fetch active squad data
-    fetch('/activeSquad')
+    fetch('/users/<int:user_id>/squads/activeSquad')
       .then(response => response.json())
       .then(data => setActiveSquad(data))
       .catch(error => console.error(error));

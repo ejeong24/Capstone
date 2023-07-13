@@ -171,6 +171,22 @@ def create_squad():
 
     return {'message': 'Squad created successfully'}
 
+@app.route('/users/<int:user_id>/squads/activeSquad', methods=['GET'])
+def get_active_squad(user_id):
+    try:
+        squad = Squad.query.filter_by(user_id=user_id).first()
+        if squad:
+            squad_data = {
+                'id': squad.id,
+                'name': squad.name
+            }
+            return jsonify(squad_data)
+        else:
+            return jsonify({'message': 'No squad found for this user.'}), 404
+    except Exception as e:
+        return {'message': 'Error retrieving active squad'}, 500
+
+
 @app.route('/users/<int:user_id>/squads/<int:squad_id>/add-player', methods=['POST'])
 def add_player_to_squad(user_id, squad_id):
     player_id = request.json.get('player_id')
