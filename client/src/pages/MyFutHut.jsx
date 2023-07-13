@@ -15,7 +15,7 @@ function MyFutHut() {
       <h2>My FutHut</h2>
       {userState && <Profile userState={userState} />}
       {userState && <ActiveSquad userState={userState} />}
-      {userState && <SquadList />}
+      {userState && <SquadList userState={userState} />}
     </div>
   );
 }

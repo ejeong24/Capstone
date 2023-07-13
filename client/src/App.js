@@ -18,7 +18,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/players">
-          <Players />
+          <Players userState={userState}/>
         </Route>
         <Route path="/leagues">
           <Leagues />

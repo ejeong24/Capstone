@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import SquadItem from '../components/SquadItem';
 
 // SquadList component
-function SquadList() {
+function SquadList({ userState }) {
   const [squads, setSquads] = useState([]);
 
   useEffect(() => {
-    // Simulating API call to fetch user's squads data
-    fetch('/squads')
+    // Fetch user's squads data
+    fetch(`/users/${userState.id}/squads`)
       .then(response => response.json())
-      .then(data => setSquads(data))
+      .then(data => {
+        setSquads(data.squads)
+        console.log(data)
+      })
       .catch(error => console.error(error));
-  }, []);
+  }, [userState.id]);
 
   return (
     <div>
