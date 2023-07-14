@@ -9,8 +9,29 @@ function SquadItem({ squad }) {
     fetch(`/squad_players/${squad.id}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setSquadPlayers(data);
+
+        const fetchPlayerNames = async () => {
+          const playerNames = await Promise.all(
+            data.map(squadPlayer =>
+              fetch(`/players/${squadPlayer.player_id}`)
+                .then(response => response.json())
+                .then(playerData => playerData.player.name)
+                .catch(error => {
+                  console.error('Error:', error);
+                  return ''; // Return an empty string in case of an error
+                })
+            )
+          );
+          setSquadPlayers(prevSquadPlayers =>
+            prevSquadPlayers.map((squadPlayer, index) => ({
+              ...squadPlayer,
+              playerName: playerNames[index]
+            }))
+          );
+        };
+
+        fetchPlayerNames();
       })
       .catch(error => {
         console.error('Error:', error);
@@ -64,16 +85,15 @@ function SquadItem({ squad }) {
       <p>ID: {squad.id}</p>
       <h5>Squad Players:</h5>
       <ul>
-        {squadPlayers.map(player => (
-          <li key={player.id}>
-            Player ID: {player.player_id}
-            Player Name: {player.player_name}
+        {squadPlayers.map(squadPlayer => (
+          <li key={squadPlayer.id}>
+            Player ID: {squadPlayer.player_id}
+            Player Name: {squadPlayer.playerName}
           </li>
         ))}
       </ul>
     </li>
   );
 }
-
 
 export default SquadItem;
