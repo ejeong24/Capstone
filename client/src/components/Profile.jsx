@@ -1,117 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+
+// import your UserContext here
+import { UserContext } from '../contexts/UserContext';
 
 // Profile component
-function Profile({ userState }) {
-  const [userProfile, setUserProfile] = useState({});
+function Profile() {
+  const { userState, setUserState } = useContext(UserContext);
+  const [userProfile, setUserProfile] = useState(userState);
   const [squads, setSquads] = useState([]);
-  const [activeSquad, setActiveSquad] = useState(null);
-  const [newSquadName, setNewSquadName] = useState('');
+  // const [activeSquad, setActiveSquad] = useState(null);
+  // const [newSquadName, setNewSquadName] = useState('');
 
   useEffect(() => {
-    // Simulating API call to fetch user profile data
-    fetch('/profile')
+    // Assuming you are fetching user's profile from backend
+    fetch(`/users/${userState.id}/profile`)
       .then(response => response.json())
       .then(data => {
-        // Assuming the received data is an object with properties name, platform, ign, and bio
+        console.log(data)
         setUserProfile(data);
+        // setUserState(data);  // Updating userState with the fetched profile
       })
       .catch(error => console.error(error));
   
-    // Simulating API call to fetch user's squads data
-    fetch('/squads')
+    fetch(`/users/${userState.id}/squads`)
       .then(response => response.json())
       .then(data => {
-        // Assuming the received data is an array of squad objects
         setSquads(data);
+        console.log(squads);
       })
       .catch(error => console.error(error));
   }, []);
 
-  const handleSetActiveSquad = squadId => {
-    const selectedSquad = squads.find(squad => squad.id === squadId);
-    setActiveSquad(selectedSquad);
-    // Perform logic to set the selected squad as the active squad
-    console.log('Setting squad as active squad:', selectedSquad);
-  };
+  // other code here...
 
-  const handleRenameSquad = squadId => {
-    const renamedSquad = squads.find(squad => squad.id === squadId);
-    // Perform logic to rename the squad
-    console.log('Renaming squad:', renamedSquad);
-  };
+  const handleProfileChange = (e) => {
+    const { name, value } = e.target;
+    setUserProfile(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  }
 
-  const handleDeleteSquad = squadId => {
-    const deletedSquad = squads.find(squad => squad.id === squadId);
-    // Perform logic to delete the squad
-    console.log('Deleting squad:', deletedSquad);
-  };
-
-  const handleCreateSquad = event => {
-    event.preventDefault();
-  
-    // Prepare the data for the API request
-    const data = {
-      squad_name: newSquadName,
-      user_id: userState.id // Replace "userID" with the appropriate property of your userState object
-    };
-  
-    // Send the API request to create a new squad
-    fetch('/squads', {
-      method: 'POST',
+  const handleProfileSubmit = (e) => {
+    e.preventDefault();
+    fetch(`/users/${userState.id}/profile`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(userProfile)
     })
       .then(response => response.json())
-      .then(result => {
-        console.log(result);
-        // Handle the response from the API as needed
+      .then(data => {
+        console.log(data);
+        setUserState(userProfile);  // Updating the userState with updated profile
       })
-      .catch(error => {
-        console.error(error);
-        // Handle any errors that occur during the API request
-      });
-  
-    setNewSquadName('');
-  };
-  
+      .catch(error => console.error(error));
+  }
 
   return (
     <div>
       <h3>User Profile</h3>
-      <p>Name: {userProfile.name}</p>
-      <p>Platform: {userProfile.platform}</p>
-      <p>In-Game Username: {userProfile.ign}</p>
-      <p>Bio: {userProfile.bio}</p>
-
-      <h3>My Squads</h3>
-      <ul>
-        {squads.map(squad => (
-          <li key={squad.id}>
-            {squad.name}
-            <button onClick={() => handleSetActiveSquad(squad.id)}>Set as Active Squad</button>
-            {activeSquad && activeSquad.id === squad.id && (
-              <div>
-                <h4>Active Squad</h4>
-                <p>Name: {activeSquad.name}</p>
-                <button onClick={() => handleRenameSquad(activeSquad.id)}>Rename Squad</button>
-                <button onClick={() => handleDeleteSquad(activeSquad.id)}>Delete Squad</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      <h3>Create New Squad</h3>
-      <form onSubmit={handleCreateSquad}>
-        <input
-          type="text"
-          placeholder="Enter squad name"
-          value={newSquadName}
-          onChange={event => setNewSquadName(event.target.value)}
-        />
-        <button type="submit">Create Squad</button>
+      <p>Username: {userState.username}</p>
+      <form onSubmit={handleProfileSubmit}>
+        <label>
+          First Name:
+          <input type="text" name="firstName" value={userProfile.firstName} onChange={handleProfileChange} />
+        </label>
+        <label>
+          Last Name:
+          <input type="text" name="lastName" value={userProfile.lastName} onChange={handleProfileChange} />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" value={userProfile.email} onChange={handleProfileChange} />
+        </label>
+        <button type="submit">Update Profile</button>
       </form>
     </div>
   );
