@@ -22,13 +22,13 @@ class User(UserMixin, db.Model, SerializerMixin):
     serialize_rules = ('-squads.user',)
 
     
-    @validates('password')
-    def validate_password(self, password):
-        if not password:
-            raise ValueError("Password is required")
-        if len(password) < 6:
-            raise ValueError("Password must be at least 6 characters")
-        return password
+    # @validates('password')
+    # def validate_password(self, password):
+    #     if not password:
+    #         raise ValueError("Password is required")
+    #     if len(password) < 6:
+    #         raise ValueError("Password must be at least 6 characters")
+    #     return password
 
     def __repr__(self):
         return f'<User(id={self.id}, username={self.username}, email={self.email})>'      

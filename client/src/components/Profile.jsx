@@ -118,10 +118,10 @@ function Profile({ userState }) {
   return (
     <div>
       <h3>User Profile</h3>
-      <p>Name: {userProfile.name}</p>
-      <p>Platform: {userProfile.platform}</p>
-      <p>In-Game Username: {userProfile.ign}</p>
-      <p>Bio: {userProfile.bio}</p>
+      <p>Username: {userProfile.username}</p>
+      <p>First Name: {userProfile.firstName}</p>
+      <p>Last Name: {userProfile.lastName}</p>
+      <p>Email: {userProfile.email}</p>
 
       {/* <h3>My Squads</h3>
       <ul>
@@ -141,8 +141,12 @@ function Profile({ userState }) {
         ))}
       </ul> */}
 
-      <h3>Profile Form</h3>
+      <h3>Edit Profile</h3>
       <form onSubmit={handleProfileSubmit}>
+        <label>
+          Username:
+          <input type="text" name="username" value={userProfile.username} onChange={handleProfileChange} />
+        </label>
         <label>
           First Name:
           <input type="text" name="firstName" value={userProfile.firstName} onChange={handleProfileChange} />
