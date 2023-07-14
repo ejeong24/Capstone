@@ -18,7 +18,10 @@ function NavBar() {
           <a href="/myfuthut">My FutHut</a>
         </li>
         <li>
-          <a href="/signin">Sign In/Sign Out</a>
+          <a href="/signin">Sign In</a>
+        </li>
+        <li>
+          <a href="/signout">Sign Out</a>
         </li>
       </ul>
     </nav>

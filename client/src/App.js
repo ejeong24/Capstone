@@ -29,7 +29,7 @@ function App() {
         <Route path="/signin">
           <SignIn userState={userState} setUserState={setUserState}/>
         </Route>
-        <Route path="/signout">
+        <Route path="/signout" userState={userState} setUserState={setUserState}>
           <SignOut />
         </Route>
       </Switch>

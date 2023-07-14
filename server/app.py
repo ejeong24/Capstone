@@ -67,9 +67,6 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    # Perform user login logic and session management
-    # You can add your own logic here to verify the username and password
-    # For demonstration purposes, let's assume the login is successful
     user = User.query.filter_by(username=username, password=password).first()
     if user:
         session['user_id'] = user.id
@@ -83,6 +80,14 @@ def login():
         }
     else:
         return {'message': 'Invalid username or password'}
+    
+    
+@app.route('/users/logout', methods=['POST'])
+def logout():
+    # Code for user logout and session management
+    session.pop('user_id', None)
+    
+    return {'message': 'User signed out successfully'}
 
 
 @app.route('/players', methods=['GET'])
@@ -271,12 +276,44 @@ def get_user_profile(userID):
 
     return profile_data
 
-@app.route('/users/logout', methods=['POST'])
-def logout():
-    # Code for user logout and session management
-    session.pop('user_id', None)
-    
-    return {'message': 'User logged out successfully'}
+@app.route('/users/<int:userID>/profile', methods=['PATCH'])
+def update_user_profile(userID):
+    # Get the user by userID
+    user = User.query.get(userID)
+
+    # Check if the user exists
+    if not user:
+        return {'message': 'User not found'}, 404
+
+    # Get the request data
+    data = request.get_json()
+
+    # Update the user fields
+    if 'username' in data:
+        user.username = data['username']
+    if 'firstName' in data:
+        user.firstName = data['firstName']
+    if 'lastName' in data:
+        user.lastName = data['lastName']
+    if 'email' in data:
+        user.email = data['email']
+    if 'password' in data:
+        user.password = data['password']
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Prepare the updated user profile data to be sent as the response
+    updated_profile_data = {
+        'username': user.username,
+        'firstName': user.firstName,
+        'lastName': user.lastName,
+        'email': user.email
+        # Add more profile data fields as needed
+    }
+
+    return updated_profile_data, 200
+
 
 if __name__ == '__main__':
     app.run(port=5555)
