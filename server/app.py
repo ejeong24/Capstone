@@ -230,6 +230,23 @@ def add_player_to_squad(user_id, squad_id):
 
     return {'message': 'Player added to squad successfully'}, 200
 
+@app.route('/users/squads/<int:squad_id>/delete-player', methods=['POST'])
+def delete_player_from_squad(squad_id):
+    player_id = request.json.get('player_id')
+    if not player_id:
+        return {'error': 'Player ID is required'}, 400
+    # if not user_id:
+    #     return {'error': 'User ID is required'}, 400
+    
+    # Perform player deletion logic from the squad
+    squad_player = SquadPlayer.query.filter_by(squad_id=squad_id, player_id=player_id).first()
+    if squad_player:
+        db.session.delete(squad_player)
+        db.session.commit()
+        return {'message': 'Player deleted from squad successfully'}
+    else:
+        return {'error': 'Player not found in the squad'}, 404
+
 @app.route('/squads', methods=['POST'])
 def create_squad():
     data = request.get_json()
