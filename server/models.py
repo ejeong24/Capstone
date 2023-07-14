@@ -20,14 +20,7 @@ class User(UserMixin, db.Model, SerializerMixin):
 
     squads = db.relationship('Squad', back_populates='user')
     serialize_rules = ('-squads.user',)
-    
-    # @validates('username')
-    # def validate_username(self, username):
-    #     if not username:
-    #         raise ValueError("Username is required")
-    #     if len(username) < 3 or len(username) > 50:
-    #         raise ValueError("Username must be between 3 and 50 characters")
-    #     return username
+
     
     @validates('password')
     def validate_password(self, password):
@@ -55,11 +48,6 @@ class Squad(db.Model, SerializerMixin):
     
     serialize_rules = ('-user.squads',)
     
-    @validates('name')
-    def validate_name(self, name):
-        if not name:
-            raise ValueError('Squad name cannot be empty')
-        return name
 
     def __repr__(self):
         return f'<Squad(id={self.id}, name={self.name}, user_id={self.user_id})>'
