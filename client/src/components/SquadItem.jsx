@@ -1,8 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function SquadItem({ squad }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
+  const [squadPlayers, setSquadPlayers] = useState([]);
+
+  useEffect(() => {
+    fetch(`/squad_players/${squad.id}`)
+      .then(response => response.json())
+      .then(data => {
+        setSquadPlayers(data);
+
+        const fetchPlayerNames = async () => {
+          const playerNames = await Promise.all(
+            data.map(squadPlayer =>
+              fetch(`/players/${squadPlayer.player_id}`)
+                .then(response => response.json())
+                .then(playerData => playerData.player.name)
+                .catch(error => {
+                  console.error('Error:', error);
+                  return ''; // Return an empty string in case of an error
+                })
+            )
+          );
+          setSquadPlayers(prevSquadPlayers =>
+            prevSquadPlayers.map((squadPlayer, index) => ({
+              ...squadPlayer,
+              playerName: playerNames[index]
+            }))
+          );
+        };
+
+        fetchPlayerNames();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, [squad.id]);
+
 
   const handleEditSquad = () => {
     fetch(`/squads/${squad.id}/edit`, {
@@ -48,6 +83,15 @@ function SquadItem({ squad }) {
         </>
       )}
       <p>ID: {squad.id}</p>
+      <h5>Squad Players:</h5>
+      <ul>
+        {squadPlayers.map(squadPlayer => (
+          <li key={squadPlayer.id}>
+            Player ID: {squadPlayer.player_id}
+            Player Name: {squadPlayer.playerName}
+          </li>
+        ))}
+      </ul>
     </li>
   );
 }
