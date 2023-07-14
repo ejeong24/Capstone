@@ -6,8 +6,12 @@ import { UserContext } from '../contexts/UserContext';
 function Profile({ userState }) {
   const [squads, setSquads] = useState([]);
   const { setUserState } = useContext(UserContext);
-  const [userProfile, setUserProfile] = useState(userState);
-  const [activeSquad, setActiveSquad] = useState(null);
+  const [userProfile, setUserProfile] = useState({
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
+  // const [activeSquad, setActiveSquad] = useState(null);
   const [newSquadName, setNewSquadName] = useState('');
 
   useEffect(() => {
@@ -37,24 +41,24 @@ function Profile({ userState }) {
   //   console.log('Setting squad as active squad:', selectedSquad);
   // };
 
-  const handleSetActiveSquad = squadId => {
-    const selectedSquad = squads.find(squad => squad.id === squadId);
-    setActiveSquad(selectedSquad);
-    // Perform logic to set the selected squad as the active squad
-    console.log('Setting squad as active squad:', selectedSquad);
-  };
+  // const handleSetActiveSquad = squadId => {
+  //   const selectedSquad = squads.find(squad => squad.id === squadId);
+  //   setActiveSquad(selectedSquad);
+  //   // Perform logic to set the selected squad as the active squad
+  //   console.log('Setting squad as active squad:', selectedSquad);
+  // };
 
-  const handleRenameSquad = squadId => {
-    const renamedSquad = squads.find(squad => squad.id === squadId);
-    // Perform logic to rename the squad
-    console.log('Renaming squad:', renamedSquad);
-  };
+  // const handleRenameSquad = squadId => {
+  //   const renamedSquad = squads.find(squad => squad.id === squadId);
+  //   // Perform logic to rename the squad
+  //   console.log('Renaming squad:', renamedSquad);
+  // };
 
-  const handleDeleteSquad = squadId => {
-    const deletedSquad = squads.find(squad => squad.id === squadId);
-    // Perform logic to delete the squad
-    console.log('Deleting squad:', deletedSquad);
-  };
+  // const handleDeleteSquad = squadId => {
+  //   const deletedSquad = squads.find(squad => squad.id === squadId);
+  //   // Perform logic to delete the squad
+  //   console.log('Deleting squad:', deletedSquad);
+  // };
 
   const handleProfileChange = (e) => {
     const { name, value } = e.target;
@@ -119,7 +123,7 @@ function Profile({ userState }) {
       <p>In-Game Username: {userProfile.ign}</p>
       <p>Bio: {userProfile.bio}</p>
 
-      <h3>My Squads</h3>
+      {/* <h3>My Squads</h3>
       <ul>
         {squads.map(squad => (
           <li key={squad.id}>
@@ -135,18 +139,7 @@ function Profile({ userState }) {
             )}
           </li>
         ))}
-      </ul>
-
-      <h3>Create New Squad</h3>
-      <form onSubmit={handleCreateSquad}>
-        <input
-          type="text"
-          placeholder="Enter squad name"
-          value={newSquadName}
-          onChange={event => setNewSquadName(event.target.value)}
-        />
-        <button type="submit">Create Squad</button>
-      </form>
+      </ul> */}
 
       <h3>Profile Form</h3>
       <form onSubmit={handleProfileSubmit}>
@@ -164,6 +157,18 @@ function Profile({ userState }) {
         </label>
         <button type="submit">Update Profile</button>
       </form>
+
+      <h3>Create New Squad</h3>
+      <form onSubmit={handleCreateSquad}>
+        <input
+          type="text"
+          placeholder="Enter squad name"
+          value={newSquadName}
+          onChange={event => setNewSquadName(event.target.value)}
+        />
+        <button type="submit">Create Squad</button>
+      </form>
+
     </div>
   );
 }
