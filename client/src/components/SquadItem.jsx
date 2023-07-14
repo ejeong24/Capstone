@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function SquadItem({ squad }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
+  const [squadPlayers, setSquadPlayers] = useState([]);
+
+  useEffect(() => {
+    fetch(`/squad_players/${squad.id}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setSquadPlayers(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, [squad.id]);
+
 
   const handleEditSquad = () => {
     fetch(`/squads/${squad.id}/edit`, {
@@ -48,8 +62,18 @@ function SquadItem({ squad }) {
         </>
       )}
       <p>ID: {squad.id}</p>
+      <h5>Squad Players:</h5>
+      <ul>
+        {squadPlayers.map(player => (
+          <li key={player.id}>
+            Player ID: {player.player_id}
+            Player Name: {player.player_name}
+          </li>
+        ))}
+      </ul>
     </li>
   );
 }
+
 
 export default SquadItem;

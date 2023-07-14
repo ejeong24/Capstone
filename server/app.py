@@ -13,6 +13,44 @@ migrate = Migrate(app, db)
 def index():
     return 'Welcome to FutHut'
 
+
+@app.route('/squad_players/<int:squadID>', methods=['GET'])
+def get_squad_players(squadID):
+    try:
+        squad_players = []
+        this_squad_players = SquadPlayer.query.filter_by(squad_id=squadID).all()
+        if this_squad_players:
+            for squad_player in this_squad_players:
+                # player = Player.query.filter_by(id=squad_player.id).first()
+                squad_player_data = {
+                    'id': squad_player.id,
+                    'player_id': squad_player.player_id
+                    # 'player_name': player.name if player else None
+                    # Add more squad player details as needed
+                }
+                squad_players.append(squad_player_data)
+            return jsonify(squad_players), 200
+        else:
+            return jsonify({'message': 'Squad not found'}), 404
+    except Exception as e:
+        return jsonify({'message': 'Error retrieving squad players'}), 500
+
+    #     if squad:
+    #         squad_players = squad.squad_players
+    #         squad_players_data = [{
+    #             'id': squad_player.id,
+    #             'player_id': squad_player.player_id,
+    #             'player_name': squad_player.player.name
+    #             # Add more squad player details as needed
+    #         } for squad_player in squad_players]
+
+    #         return jsonify(squad_players_data), 200
+    #     else:
+    #         return jsonify({'message': 'Squad not found'}), 404
+    # except Exception as e:
+    #     return jsonify({'message': 'Error retrieving squad players'}), 500
+        return {squad_players};
+
 @app.route('/users/register', methods=['POST'])
 def register():
     data = request.get_json()
