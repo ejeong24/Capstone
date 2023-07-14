@@ -67,9 +67,6 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    # Perform user login logic and session management
-    # You can add your own logic here to verify the username and password
-    # For demonstration purposes, let's assume the login is successful
     user = User.query.filter_by(username=username, password=password).first()
     if user:
         session['user_id'] = user.id
@@ -83,6 +80,14 @@ def login():
         }
     else:
         return {'message': 'Invalid username or password'}
+    
+    
+@app.route('/users/logout', methods=['POST'])
+def logout():
+    # Code for user logout and session management
+    session.pop('user_id', None)
+    
+    return {'message': 'User signed out successfully'}
 
 
 @app.route('/players', methods=['GET'])
@@ -271,12 +276,6 @@ def get_user_profile(userID):
 
     return profile_data
 
-@app.route('/users/logout', methods=['POST'])
-def logout():
-    # Code for user logout and session management
-    session.pop('user_id', None)
-    
-    return {'message': 'User logged out successfully'}
 
 if __name__ == '__main__':
     app.run(port=5555)
