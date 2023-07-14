@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function SquadItem({ squad }) {
+function SquadItem({ squad , userState }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
   const [squadPlayers, setSquadPlayers] = useState([]);
@@ -67,6 +67,23 @@ function SquadItem({ squad }) {
       });
   }
 
+  const handleDeletePlayer = (playerId) => {
+    fetch(`/users/squads/${squad.id}/delete-player`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ player_id: playerId }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
   return (
     <li>
       {!editMode ? (
@@ -89,6 +106,7 @@ function SquadItem({ squad }) {
           <li key={squadPlayer.id}>
             Player ID: {squadPlayer.player_id}
             Player Name: {squadPlayer.playerName}
+            <button onClick={() => handleDeletePlayer(squadPlayer.player_id)}>Delete Player</button>
           </li>
         ))}
       </ul>
