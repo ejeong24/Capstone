@@ -10,52 +10,43 @@ function Players() {
   const handleAddToActiveSquad = (playerId) => {
     // Perform logic to add the player to the active squad
     console.log('Adding player to active squad:', playerId);
-    console.log(JSON.stringify({
-      player_id: playerId,
-    }));
-
-    // Fetch the user's squads
-    fetch(`/users/${userState.id}/squads`)
-      .then(response => response.json())
-      .then(data => {
-
-        const squads = data;
-        console.log(data);
-
-        if (squads.length === 0) {
-          console.log('No squads found for the user.');
-          return;
+  
+    // Fetch the active squad for the user
+    fetch(`/users/${userState.id}/squads/activeSquad`)
+      .then((response) => response.json())
+      .then((data) => {
+        const activeSquadId = data.id;
+  
+        if (activeSquadId) {
+          // Add the player to the active squad
+          fetch(`/users/${userState.id}/squads/${activeSquadId}/add-player`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              player_id: playerId,
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log('Player added to active squad successfully.');
+              } else {
+                console.error('Error adding player to active squad.');
+              }
+            })
+            .catch((error) => {
+              console.error('Error adding player to active squad:', error);
+            });
+        } else {
+          console.log('No active squad found for the user.');
         }
-
-        // Add the player to the first squad
-        const squadId = data[0]['id'];
-        console.log(`userId: ${userState.id}, squadId: ${squadId}, playerId: ${playerId}`);
-
-
-        fetch(`/users/${userState.id}/squads/${squadId}/add-player`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            player_id: playerId
-          })
-        })
-          .then(response => {
-            if (response.ok) {
-              console.log('Player added to squad successfully.');
-            } else {
-              console.error('Error adding player to squad.');
-            }
-          })
-          .catch(error => {
-            console.error('Error adding player to squad:', error);
-          });
       })
-      .catch(error => {
-        console.error('Error fetching user squads:', error);
+      .catch((error) => {
+        console.error('Error fetching active squad:', error);
       });
   };
+  
 
   return (
     <div>
