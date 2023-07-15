@@ -203,9 +203,10 @@ def players_by_id(playerId):
 @app.route('/users/<int:user_id>/squads/activeSquad', methods=['GET'])
 def get_active_squad(user_id):
     try:
-        squad = Squad.query.filter_by(user_id=user_id).first()
+        squad = Squad.query.filter_by(user_id=user_id, active=True).first()
         if squad:
             squad_data = {
+                'active': squad.active,
                 'id': squad.id,
                 'name': squad.name
             }
@@ -214,6 +215,18 @@ def get_active_squad(user_id):
             return jsonify({'message': 'No squad found for this user.'}), 404
     except Exception as e:
         return {'message': 'Error retrieving active squad'}, 500
+    
+@app.route('/users/<int:user_id>/squads/<int:squad_id>/setActive', methods=['POST'])
+def set_active_squad(user_id, squad_id):
+    # Update the active status of the squads
+    Squad.query.filter(Squad.user_id == user_id).update({Squad.active: False})
+    squad = Squad.query.filter_by(id=squad_id, user_id=user_id).first()
+    if squad:
+        squad.active = True
+        db.session.commit()
+        return {'message': 'Active squad set successfully'}
+    else:
+        return {'error': 'Squad not found'}, 404
 
 
 @app.route('/users/<int:user_id>/squads/<int:squad_id>/add-player', methods=['POST'])
@@ -267,7 +280,8 @@ def get_user_squads(userID):
         for squad in Squad.query.filter(Squad.user_id == userID):
             squad_data = {
                 'id': squad.id,
-                'name': squad.name
+                'name': squad.name,
+                'active': squad.active
             }
             squads.append(squad_data)
         return jsonify(squads)

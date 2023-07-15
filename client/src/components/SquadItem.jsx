@@ -4,6 +4,7 @@ function SquadItem({ squad , userState }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
   const [squadPlayers, setSquadPlayers] = useState([]);
+  
 
   useEffect(() => {
     fetch(`/squad_players/${squad.id}`)
@@ -11,6 +12,7 @@ function SquadItem({ squad , userState }) {
       .then(data => {
         setSquadPlayers(data);
         console.log(data)
+        console.log(userState.id)
 
         const fetchPlayerNames = async () => {
           const playerNames = await Promise.all(
@@ -85,11 +87,39 @@ function SquadItem({ squad , userState }) {
       });
   }
 
+  const handleSetActiveSquad = () => {
+    fetch(`/users/${userState.id}/squads/activeSquad`, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        
+        fetch(`/users/${userState.id}/squads/${squad.id}/setActive`, {
+          method: 'POST',
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            setSquads(data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  
+
   return (
     <li>
       {!editMode ? (
         <>
           <h4>{squad.name}</h4>
+          <button onClick={handleSetActiveSquad}>Set as Active</button>
           <button onClick={() => setEditMode(true)}>Edit</button>
           <button onClick={handleDeleteSquad}>Delete</button>
         </>
@@ -113,6 +143,6 @@ function SquadItem({ squad , userState }) {
       </ul>
     </li>
   );
-}
+};
 
 export default SquadItem;
