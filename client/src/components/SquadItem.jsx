@@ -10,6 +10,7 @@ function SquadItem({ squad , userState }) {
       .then(response => response.json())
       .then(data => {
         setSquadPlayers(data);
+        console.log(data)
 
         const fetchPlayerNames = async () => {
           const playerNames = await Promise.all(

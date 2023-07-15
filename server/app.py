@@ -31,7 +31,7 @@ def get_squad_players(squadID):
                 squad_players.append(squad_player_data)
             return jsonify(squad_players), 200
         else:
-            return jsonify({'message': 'Squad not found'}), 404
+            return jsonify([{'message': 'Squad not found'}]), 404
     except Exception as e:
         return jsonify({'message': 'Error retrieving squad players'}), 500
 
