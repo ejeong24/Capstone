@@ -144,7 +144,8 @@ def players():
         'id': player['id'],
         'name': player['name'],
         'resourceId': player['resourceId'],
-        'league': player['league']
+        'league': player['league'],
+        'rarity': player['rarity']
     } for player in data['items']]
 
     pagination = {
@@ -221,12 +222,22 @@ def player_bg_by_id(rarityId):
         'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7'
     }
     response = requests.get(url, headers=headers)
-    
+
     if response.status_code == 200:
         image_data = response.content
         return Response(image_data, mimetype='image/png')
     else:
-        return Response(response.text, status=response.status_code, mimetype='application/json')
+        # Fallback to default card image with rarityId 163
+        default_url = 'https://futdb.app/api/rarities/163/image'
+        default_response = requests.get(default_url, headers=headers)
+
+        if default_response.status_code == 200:
+            default_image_data = default_response.content
+            return Response(default_image_data, mimetype='image/png')
+        else:
+            # Handle the case when both the requested rarityId and the default image are not available
+            return Response('Image not found', status=404)
+
     
 
 @app.route('/users/<int:user_id>/squads/activeSquad', methods=['GET'])
