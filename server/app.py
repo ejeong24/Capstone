@@ -214,6 +214,20 @@ def player_images_by_id(playerId):
     else:
         return Response(response.text, status=response.status_code, mimetype='application/json')
     
+@app.route('/rarities/<int:rarityId>/image', methods=['GET'])
+def player_bg_by_id(rarityId):
+    url = f'https://futdb.app/api/rarities/{rarityId}/image'
+    headers = {
+        'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7'
+    }
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        image_data = response.content
+        return Response(image_data, mimetype='image/png')
+    else:
+        return Response(response.text, status=response.status_code, mimetype='application/json')
+    
 
 @app.route('/users/<int:user_id>/squads/activeSquad', methods=['GET'])
 def get_active_squad(user_id):
