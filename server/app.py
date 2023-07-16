@@ -1,4 +1,4 @@
-from flask import Flask, request, session, make_response, jsonify
+from flask import Flask, request, session, make_response, jsonify, Response
 from flask_cors import CORS
 from flask_migrate import Migrate
 from config import app, db, api, Resource
@@ -199,6 +199,21 @@ def players_by_id(playerId):
     }
     response = requests.get(url, headers=headers)
     return response.json()
+
+@app.route('/players/<string:playerId>/image', methods=['GET'])
+def player_images_by_id(playerId):
+    url = f'https://futdb.app/api/players/{playerId}/image'
+    headers = {
+        'X-AUTH-TOKEN': 'e0218f1b-c550-4938-a8d5-e309e6dc02b7'
+    }
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        image_data = response.content
+        return Response(image_data, mimetype='image/png')
+    else:
+        return Response(response.text, status=response.status_code, mimetype='application/json')
+    
 
 @app.route('/users/<int:user_id>/squads/activeSquad', methods=['GET'])
 def get_active_squad(user_id):
