@@ -53,17 +53,57 @@
   height: 100%;
   opacity: 0.5;
   z-index: 1;
+  background-size: cover;
+  background-position: center;
 }
 
 .player-image {
   position: relative;
   width: 100%;
   height: auto;
+  border-radius: 5px;
   z-index: 2;
 }
 
-.pagination-buttons {
-  margin-top: 20px;
+.player-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+}
+
+.player-details h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.add-squad-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 3;
+}
+
+/* Additional styling */
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.button-container {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
+
+.button-container button {
+  margin: 0 10px;
+}
+
+
+

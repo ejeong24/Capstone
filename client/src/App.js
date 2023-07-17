@@ -6,6 +6,8 @@ import Leagues from './pages/Leagues';
 import MyFutHut from './pages/MyFutHut';
 import SignIn from './pages/SignIn';
 import SignOut from './pages/SignOut';
+import './App.css'
+
 
 // Parent component
 function App() {
@@ -15,13 +17,13 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home userState={userState}/>
         </Route>
         <Route path="/players">
           <Players userState={userState}/>
         </Route>
         <Route path="/leagues">
-          <Leagues />
+          <Leagues userState={userState}/>
         </Route>
         <Route path="/myfuthut">
           <MyFutHut userState={userState}/>
