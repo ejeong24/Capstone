@@ -4,6 +4,7 @@ function SquadItem({ squad , userState }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
   const [squadPlayers, setSquadPlayers] = useState([]);
+  const [squads, setSquads] = useState([]);
   
 
   useEffect(() => {
