@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Card, ListGroup, Form, Collapse } from 'react-bootstrap';
 
 function SquadItem({ squad , userState }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
   const [squadPlayers, setSquadPlayers] = useState([]);
   const [squads, setSquads] = useState([]);
+  const [open, setOpen] = useState(false); // new state for Collapse
   
 
   useEffect(() => {
@@ -116,33 +118,41 @@ function SquadItem({ squad , userState }) {
   
 
   return (
-    <li>
-      {!editMode ? (
-        <>
-          <h4>{squad.name}</h4>
-          <button onClick={handleSetActiveSquad}>Set as Active</button>
-          <button onClick={() => setEditMode(true)}>Edit</button>
-          <button onClick={handleDeleteSquad}>Delete</button>
-        </>
-      ) : (
-        <>
-          <input value={newSquadName} onChange={e => setNewSquadName(e.target.value)} />
-          <button onClick={handleEditSquad}>Save</button>
-          <button onClick={() => setEditMode(false)}>Cancel</button>
-        </>
-      )}
-      <p>ID: {squad.id}</p>
-      <h5>Squad Players:</h5>
-      <ul>
-        {squadPlayers.map(squadPlayer => (
-          <li key={squadPlayer.id}>
-            Player ID: {squadPlayer.player_id}
-            Player Name: {squadPlayer.playerName}
-            <button onClick={() => handleDeletePlayer(squadPlayer.player_id)}>Delete Player</button>
-          </li>
-        ))}
-      </ul>
-    </li>
+    <Card className="mb-3 shadow" style={{ borderRadius: '15px' }}>
+      <Card.Body>
+        <Card.Title>{squad.name}</Card.Title>
+        <Button variant="primary" onClick={handleSetActiveSquad}>Set as Active</Button>{' '}
+        <Button variant="secondary" onClick={() => {setEditMode(true); setOpen(!open)}}>Edit</Button>{' '}
+        <Button variant="danger" onClick={handleDeleteSquad}>Delete</Button>
+
+        <Collapse in={open}>
+          <div>
+            {!editMode ? null : (
+              <>
+                <Form.Control 
+                  type="text" 
+                  value={newSquadName} 
+                  onChange={e => setNewSquadName(e.target.value)}
+                />
+                <Button variant="success" onClick={handleEditSquad}>Save</Button>{' '}
+                <Button variant="secondary" onClick={() => {setEditMode(false); setOpen(!open)}}>Cancel</Button>
+              </>
+            )}
+          </div>
+        </Collapse>
+
+        <p>ID: {squad.id}</p>
+        <h5>Squad Players:</h5>
+        <ListGroup>
+          {squadPlayers.map(squadPlayer => (
+            <ListGroup.Item key={squadPlayer.id}>
+              Player ID: {squadPlayer.player_id}, Player Name: {squadPlayer.playerName}{' '}
+              <Button variant="danger" onClick={() => handleDeletePlayer(squadPlayer.player_id)}>Delete Player</Button>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Card.Body>
+    </Card>
   );
 };
 
