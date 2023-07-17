@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.player-card {
+  position: relative;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rarity-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.player-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+.pagination-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
