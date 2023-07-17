@@ -76,26 +76,28 @@ function PlayerList({ userState, handleAddToActiveSquad }) {
       <ul>
         {players.map(player => (
           <div key={player.resourceId} className='player-card'>
-            <div className='player-image-container'>
-              <div className='rarity-image' style={{ backgroundImage: `url(${player.rarity})` }}>
-                <div style={{ paddingBottom: '56.25%' }} />
+            <div className='player-content'>
+              <div className='player-image-container'>
+                <div className='rarity-image' style={{ backgroundImage: `url(${player.rarity})` }}>
+                  <div style={{ paddingBottom: '56.25%' }} />
+                </div>
+                <div className='player-image'>
+                  {player.image && <img src={player.image} alt={player.name} />}
+                </div>
               </div>
-              <div className='player-image'>
-                {player.image && <img src={player.image} alt={player.name} />}
+              <div className='player-details'>
+                <h3>{player.name}</h3>
+                <p>League: {player.league}</p>
+                {/* <p>Rarity: {player.rarity}</p> */}
+                <p>Rating: {player.rating}</p>
+                <p>Rating Average: {player.ratingAverage}</p>
+                <p>Pace: {player.pace}</p>
+                <p>Shooting: {player.shooting}</p>
+                <p>Passing: {player.passing}</p>
+                <p>Dribbling: {player.dribbling}</p>
+                <p>Defending: {player.defending}</p>
+                <p>Physicality: {player.physicality}</p>
               </div>
-            </div>
-            <div className='player-details'>
-              <h3>{player.name}</h3>
-              <p>League: {player.league}</p>
-              {/* <p>Rarity: {player.rarity}</p> */}
-              <p>Rating: {player.rating}</p>
-              <p>Rating Average: {player.ratingAverage}</p>
-              <p>Pace: {player.pace}</p>
-              <p>Shooting: {player.shooting}</p>
-              <p>Passing: {player.passing}</p>
-              <p>Dribbling: {player.dribbling}</p>
-              <p>Defending: {player.defending}</p>
-              <p>Physicality: {player.physicality}</p>
             </div>
             <button className='add-squad-button' onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
           </div>

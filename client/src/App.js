@@ -7,6 +7,8 @@ import MyFutHut from './pages/MyFutHut';
 import SignIn from './pages/SignIn';
 import SignOut from './pages/SignOut';
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 // Parent component
