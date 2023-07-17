@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import NavBar from '../components/NavBar'
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 // SignOut component
 function SignOut() {
   const { updateUserState } = useContext(UserContext);
   const history = useHistory();
 
-  const handleSignOut = () => {
+  const handleSignOut = (event) => {
+    event.preventDefault();
     fetch('/users/logout', {
       method: 'POST',
       headers: {
@@ -36,10 +38,20 @@ function SignOut() {
   };
 
   return (
-    <div>
+    <div className="jumbotron">
       <NavBar />
-      <h3>Sign Out</h3>
-      <button onClick={handleSignOut}>Sign Out</button>
+      <Container>
+        <Row className="justify-content-center align-items-center" style={{ minHeight: "30vh" }}>
+          <Col xs={12} sm={8} md={6}>
+            <h3 className="text-center">Sign Out</h3>
+            <Form onSubmit={handleSignOut} className="form-background">
+              <Button variant="primary" type="submit" className="w-100">
+                Confirm Sign Out
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

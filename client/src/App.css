@@ -93,7 +93,7 @@
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  /* background-color: #e9ecef; */
+  background-color:#282c34;
   border-radius: 0.3rem;
   background-image: url('../../images/jumbotron.jpg');
   background-size: cover;
@@ -102,6 +102,9 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* shadow makes text more legible */
   width:100%; /* makes the jumbotron cover the entire width */
   height: 100vh; /* adjust this to control the height */
+  top: 0; /* Add this line */
+  left: 0; /* Add this line */
+  z-index: 1; /* Add this line */
 }
 
 .form-group {
@@ -139,4 +142,88 @@
 .form-label {
   color: white;
   font-weight: 500;
+}
+
+/* CSS for Leagues component */
+
+/* Style for the container */
+.container-fluid {
+  background-color: #f7f7f7; /* Set a light background color */
+}
+
+/* Style for the LeagueList component */
+ul.league-list {
+  list-style: none;
+  padding: 0;
+}
+
+ul.league-list li {
+  margin-bottom: 10px;
+}
+
+ul.league-list li button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ul.league-list li button:hover {
+  background-color: #0069d9;
+}
+
+/* Style for the Players */
+.card {
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-buttons button {
+  margin-right: 10px;
+}
+
+/* Additional styles for the NavBar component */
+
+.navbar {
+  background-color: #282c34;
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: white;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #61dafb;
+}
+
+/* Additional styles for the overall layout */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }

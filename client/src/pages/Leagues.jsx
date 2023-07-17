@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import LeagueList from '../components/LeagueList';
 import NavBar from '../components/NavBar';
+import { Container, Button, Card, ListGroup, Row } from 'react-bootstrap';
 
 // Leagues component
 function Leagues() {
   const [players, setPlayers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+
+  const containerStyle = {
+    backgroundColor: 'rgba(0, 0, 0, .15)', // white with 70% opacity
+    borderRadius: '15px',
+    padding: '20px',
+    minHeight: '100vh', // Adjust the minimum height to fill the entire viewport
+  };
 
   useEffect(() => {
     fetchPlayers(currentPage);
@@ -61,22 +69,32 @@ function Leagues() {
   return (
     <div>
       <NavBar />
-      <h2>Leagues</h2>
-      <LeagueList handleLeagueClick={handleLeagueClick} />
-      <h2>Players</h2>
-      {players && players.map((player, index) => (
-        <div key={index}>
-          <h4>{player.name}</h4>
-        </div>
-      ))}
-      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-        Previous Page
-      </button>
-      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-        Next Page
-      </button>
+      <Container fluid style={containerStyle} className="mt-5">
+        <h2>Leagues</h2>
+        <Row className="mb-3">
+          <LeagueList handleLeagueClick={handleLeagueClick} />
+        </Row>
+        <h2>Players</h2>
+        {players && players.map((player, index) => (
+          <Card key={index} className="mb-2">
+            <Card.Body>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Card.Title>{player.name}</Card.Title>
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+        <Row className="mt-3">
+          <Button onClick={handlePreviousPage} disabled={currentPage === 1} className="mr-2">
+            Previous Page
+          </Button>
+          <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Next Page
+          </Button>
+        </Row>
+      </Container>
     </div>
   );
-};
+}
 
 export default Leagues;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import { UserContext } from '../contexts/UserContext';
+import { Container, Form, Button, Collapse } from 'react-bootstrap';
 
 // Profile component
 function Profile({ userState }) {
@@ -13,6 +13,7 @@ function Profile({ userState }) {
   });
   // const [activeSquad, setActiveSquad] = useState(null);
   const [newSquadName, setNewSquadName] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // Simulating API call to fetch user profile data
@@ -116,64 +117,46 @@ function Profile({ userState }) {
   }
 
   return (
-    <div>
-      <h3>User Profile</h3>
+    <Container>
+      <h3 className="text-center my-4">User Profile</h3>
       <p>Username: {userProfile.username}</p>
       <p>First Name: {userProfile.firstName}</p>
       <p>Last Name: {userProfile.lastName}</p>
       <p>Email: {userProfile.email}</p>
 
-      {/* <h3>My Squads</h3>
-      <ul>
-        {squads.map(squad => (
-          <li key={squad.id}>
-            {squad.name}
-            <button onClick={() => handleSetActiveSquad(squad.id)}>Set as Active Squad</button>
-            {activeSquad && activeSquad.id === squad.id && (
-              <div>
-                <h4>Active Squad</h4>
-                <p>Name: {activeSquad.name}</p>
-                <button onClick={() => handleRenameSquad(activeSquad.id)}>Rename Squad</button>
-                <button onClick={() => handleDeleteSquad(activeSquad.id)}>Delete Squad</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul> */}
+      <h3 className="text-center my-4">Edit Profile</h3>
+      <Button 
+        onClick={() => setOpen(!open)} 
+        aria-controls="edit-profile-form" 
+        aria-expanded={open}
+      >
+        {open ? 'Hide Edit Profile Form' : 'Show Edit Profile Form'}
+      </Button>
 
-      <h3>Edit Profile</h3>
-      <form onSubmit={handleProfileSubmit}>
-        <label>
-          Username:
-          <input type="text" name="username" value={userProfile.username} onChange={handleProfileChange} />
-        </label>
-        <label>
-          First Name:
-          <input type="text" name="firstName" value={userProfile.firstName} onChange={handleProfileChange} />
-        </label>
-        <label>
-          Last Name:
-          <input type="text" name="lastName" value={userProfile.lastName} onChange={handleProfileChange} />
-        </label>
-        <label>
-          Email:
-          <input type="email" name="email" value={userProfile.email} onChange={handleProfileChange} />
-        </label>
-        <button type="submit">Update Profile</button>
-      </form>
-
-      <h3>Create New Squad</h3>
-      <form onSubmit={handleCreateSquad}>
-        <input
-          type="text"
-          placeholder="Enter squad name"
-          value={newSquadName}
-          onChange={event => setNewSquadName(event.target.value)}
-        />
-        <button type="submit">Create Squad</button>
-      </form>
-
-    </div>
+      <Collapse in={open}>
+        <div id="edit-profile-form">
+          <Form onSubmit={handleProfileSubmit}>
+            <Form.Group controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" name="username" value={userProfile.username} onChange={handleProfileChange} />
+            </Form.Group>
+            <Form.Group controlId="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" name="firstName" value={userProfile.firstName} onChange={handleProfileChange} />
+            </Form.Group>
+            <Form.Group controlId="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" name="lastName" value={userProfile.lastName} onChange={handleProfileChange} />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" name="email" value={userProfile.email} onChange={handleProfileChange} />
+            </Form.Group>
+            <Button variant="primary" type="submit">Update Profile</Button>
+          </Form>
+        </div>
+      </Collapse>
+    </Container>
   );
 }
 

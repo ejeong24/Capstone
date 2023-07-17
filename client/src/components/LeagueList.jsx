@@ -29,25 +29,53 @@ function LeagueList({ handleLeagueClick }) {
     setCurrentPage(prevPage => prevPage - 1);
   };
 
+  const listItemStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: '10px',
+  };
+
+  const buttonStyle = {
+    marginLeft: '10px',
+    padding: '6px 12px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+  };
+
+  const paginationButtonStyle = {
+    margin: '10px 5px',
+    padding: '6px 12px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+  };
+
   return (
     <div>
       <ul>
         {leagues && leagues.map((league, index) => (
-          <li key={index}>
+          <li key={index} style={listItemStyle}>
             {league.name}
-            <button onClick={() => handleLeagueClick(league.id)}>View Players</button>
+            <button onClick={() => handleLeagueClick(league.id)} style={buttonStyle}>View Players</button>
           </li>
         ))}
       </ul>
-      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-        Previous Page
-      </button>
-      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-        Next Page
-      </button>
+      <div>
+        <button onClick={handlePreviousPage} disabled={currentPage === 1} style={paginationButtonStyle}>
+          Previous Page
+        </button>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages} style={paginationButtonStyle}>
+          Next Page
+        </button>
+      </div>
     </div>
   );
 }
-
 
 export default LeagueList;

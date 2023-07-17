@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SquadItem from '../components/SquadItem';
+import { Container, ListGroup } from 'react-bootstrap';
 
 // SquadList component
 function SquadList({ userState }) {
@@ -17,18 +18,18 @@ function SquadList({ userState }) {
   }, [userState.id]);
 
   return (
-    <div>
-      <h3>Squad List</h3>
+    <Container>
+      <h3 className="text-center my-4">Squad List</h3>
       {squads && squads.length > 0 ? (
-        <ul>
+        <ListGroup>
           {squads.map(squad => (
             <SquadItem key={squad.id} squad={squad} userState={userState} />
           ))}
-        </ul>
+        </ListGroup>
       ) : (
         <p>No squads found.</p>
       )}
-    </div>
+    </Container>
   );
 }
 
