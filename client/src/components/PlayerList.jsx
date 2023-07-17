@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function PlayerList({ handleAddToActiveSquad }) {
+function PlayerList({ userState, handleAddToActiveSquad }) {
   const [players, setPlayers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -13,7 +13,8 @@ function PlayerList({ handleAddToActiveSquad }) {
     fetch(`/players?page=${page}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data.players)
+        console.log(userState);
+        console.log(data.players);
         setPlayers(data.players);
         setTotalPages(data.pagination.pageTotal);
         fetchPlayerImages(data.players);
@@ -74,12 +75,26 @@ function PlayerList({ handleAddToActiveSquad }) {
     <div>
       <ul>
         {players.map(player => (
-          <li key={player.resourceId}>
-            {player.name}
-            {player.image && <img src={player.image} alt={player.name} />}
-            {player.rarity && <img src={player.rarity} alt={player.name} />}
-            <button onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
-          </li>
+          <div key={player.resourceId} className='player-card'>
+            <div className='rarity-image' style={{ backgroundImage: `url(${player.rarity})` }}></div>
+            <div className='player-image'>
+              {player.image && <img src={player.image} alt={player.name} />}
+            </div>
+            <div className='player-details'>
+              <h3>{player.name}</h3>
+              <p>League: {player.league}</p>
+              {/* <p>Rarity: {player.rarity}</p> */}
+              <p>Rating: {player.rating}</p>
+              <p>Rating Average: {player.ratingAverage}</p>
+              <p>Pace: {player.pace}</p>
+              <p>Shooting: {player.shooting}</p>
+              <p>Passing: {player.passing}</p>
+              <p>Dribbling: {player.dribbling}</p>
+              <p>Defending: {player.defending}</p>
+              <p>Physicality: {player.physicality}</p>
+            </div>
+            <button className='add-squad-button' onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
+          </div>
         ))}
       </ul>
       <button onClick={handlePreviousPage} disabled={currentPage === 1}>

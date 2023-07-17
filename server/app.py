@@ -9,10 +9,6 @@ import requests
 CORS(app)
 migrate = Migrate(app, db)
 
-@app.route('/')
-def index():
-    return 'Welcome to FutHut'
-
 
 @app.route('/squad_players/<int:squadID>', methods=['GET'])
 def get_squad_players(squadID):
@@ -145,7 +141,16 @@ def players():
         'name': player['name'],
         'resourceId': player['resourceId'],
         'league': player['league'],
-        'rarity': player['rarity']
+        'rarity': player['rarity'],
+        'rating': player['rating'],
+        "ratingAverage": player['ratingAverage'],
+        "pace": player['pace'],
+        "shooting": player['shooting'],
+        "passing": player['passing'],
+        "dribbling": player['dribbling'],
+        "defending": player['defending'],
+        "physicality": player['physicality']
+        
     } for player in data['items']]
 
     pagination = {
@@ -422,6 +427,11 @@ def update_user_profile(userID):
     }
 
     return updated_profile_data, 200
+
+
+@app.route('/')
+def index():
+    return 'Welcome to FutHut'
 
 
 if __name__ == '__main__':
