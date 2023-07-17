@@ -10,16 +10,16 @@ function Home() {
   return (
     <div>
       <NavBar />
-      <Container>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
-            <div className="jumbotron">
+      <div className="jumbotron">
+        <Container>
+          <Row className="justify-content-md-center">
+            <Col md="auto">
               <h1>Welcome to FutHut</h1>
               <RegistrationForm />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }

@@ -93,6 +93,50 @@
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef;
+  /* background-color: #e9ecef; */
   border-radius: 0.3rem;
+  background-image: url('../../images/jumbotron.jpg');
+  background-size: cover;
+  background-position: center 2%;
+  color: white; /* makes text inside jumbotron white */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* shadow makes text more legible */
+  width:100%; /* makes the jumbotron cover the entire width */
+  height: 100vh; /* adjust this to control the height */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 2px solid #ddd;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #495057;
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-primary {
+  border-radius: 0;
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  background-color: #0062cc;
+  box-shadow: none;
+}
+
+.form-label {
+  color: white;
+  font-weight: 500;
 }
