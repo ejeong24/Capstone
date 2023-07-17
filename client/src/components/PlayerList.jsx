@@ -76,9 +76,13 @@ function PlayerList({ userState, handleAddToActiveSquad }) {
       <ul>
         {players.map(player => (
           <div key={player.resourceId} className='player-card'>
-            <div className='rarity-image' style={{ backgroundImage: `url(${player.rarity})` }}></div>
-            <div className='player-image'>
-              {player.image && <img src={player.image} alt={player.name} />}
+            <div className='player-image-container'>
+              <div className='rarity-image' style={{ backgroundImage: `url(${player.rarity})` }}>
+                <div style={{ paddingBottom: '56.25%' }} />
+              </div>
+              <div className='player-image'>
+                {player.image && <img src={player.image} alt={player.name} />}
+              </div>
             </div>
             <div className='player-details'>
               <h3>{player.name}</h3>
@@ -106,5 +110,6 @@ function PlayerList({ userState, handleAddToActiveSquad }) {
     </div>
   );
 }
+
 
 export default PlayerList;
