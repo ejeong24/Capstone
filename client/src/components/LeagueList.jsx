@@ -14,7 +14,6 @@ function LeagueList({ handleLeagueClick }) {
     fetch(`/leagues?page=${page}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setLeagues(data.leagues);
         setTotalPages(data.pagination.pageTotal);
       })
@@ -29,15 +28,26 @@ function LeagueList({ handleLeagueClick }) {
     setCurrentPage(prevPage => prevPage - 1);
   };
 
+  const leagueListStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gridGap: '10px',
+    listStyle: 'none',
+    padding: 0,
+  };
+
   const listItemStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    padding: '10px',
+    borderRadius: '4px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   };
 
   const buttonStyle = {
-    marginLeft: '10px',
     padding: '6px 12px',
     backgroundColor: '#007bff',
     color: '#fff',
@@ -58,7 +68,7 @@ function LeagueList({ handleLeagueClick }) {
 
   return (
     <div>
-      <ul>
+      <ul style={leagueListStyle}>
         {leagues && leagues.map((league, index) => (
           <li key={index} style={listItemStyle}>
             {league.name}

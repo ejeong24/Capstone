@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
 
 function PlayerList({ userState, handleAddToActiveSquad }) {
   const [players, setPlayers] = useState([]);
@@ -72,37 +73,48 @@ function PlayerList({ userState, handleAddToActiveSquad }) {
   };
 
   return (
-    <div>
-      <ul>
+    <div style={{ padding: '1rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {players.map(player => (
-          <div key={player.resourceId} className='player-card'>
-            <div className='player-content'>
-              <div className='player-image-container'>
-                <div className='rarity-image' style={{ backgroundImage: `url(${player.rarity})` }}>
-                  <div style={{ paddingBottom: '56.25%' }} />
-                </div>
-                <div className='player-image'>
-                  {player.image && <img src={player.image} alt={player.name} />}
-                </div>
+          <Card key={player.resourceId} className='player-card' style={{ marginBottom: '1rem' }}>
+            <Card.Header>{player.name}</Card.Header>
+            <Card.Body className='player-content' style={{ display: 'flex', flexDirection: 'row' }}>
+              <div className='player-image-container' style={{ 
+                backgroundImage: `url(${player.rarity})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '18rem' }}>
+                <Card.Img variant="top" src={player.image} alt={player.name} style={{
+                  maxWidth: '70%',
+                  maxHeight: '70%',
+                  objectFit: 'contain',
+                }}/>
               </div>
-              <div className='player-details'>
-                <h3>{player.name}</h3>
-                <p>League: {player.league}</p>
-                {/* <p>Rarity: {player.rarity}</p> */}
-                <p>Rating: {player.rating}</p>
-                <p>Rating Average: {player.ratingAverage}</p>
-                <p>Pace: {player.pace}</p>
-                <p>Shooting: {player.shooting}</p>
-                <p>Passing: {player.passing}</p>
-                <p>Dribbling: {player.dribbling}</p>
-                <p>Defending: {player.defending}</p>
-                <p>Physicality: {player.physicality}</p>
+              <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1, marginLeft: '1rem'}}>
+                <Card.Text style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flex: 1, flexWrap: 'wrap'}}>
+                  <p style={{display: 'inline', margin: '0 1rem'}}>League: {player.league}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Rating: {player.rating}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Rating Average: {player.ratingAverage}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Pace: {player.pace}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Shooting: {player.shooting}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Passing: {player.passing}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Dribbling: {player.dribbling}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Defending: {player.defending}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Physicality: {player.physicality}</p> |
+                  <p style={{display: 'inline', margin: '0 1rem'}}>Position: {player.position}</p>
+                </Card.Text>
+                <Button variant="success" className='add-squad-button' onClick={() => handleAddToActiveSquad(player.id)} style={{ marginTop: '1rem', alignSelf: 'flex-end' }}>
+                  Add to Active Squad
+                </Button>
               </div>
-            </div>
-            <button className='add-squad-button' onClick={() => handleAddToActiveSquad(player.id)}>Add to Active Squad</button>
-          </div>
+            </Card.Body>
+          </Card>
         ))}
-      </ul>
+      </div>
       <button onClick={handlePreviousPage} disabled={currentPage === 1}>
         Previous Page
       </button>
@@ -112,6 +124,5 @@ function PlayerList({ userState, handleAddToActiveSquad }) {
     </div>
   );
 }
-
 
 export default PlayerList;
