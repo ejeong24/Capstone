@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeagueList from '../components/LeagueList';
 import NavBar from '../components/NavBar';
-import { Container, Button, Card, ListGroup, Row } from 'react-bootstrap';
+import { Container, Button, Card, ListGroup, Row, Col } from 'react-bootstrap';
 
 // Leagues component
 function Leagues() {
@@ -69,28 +69,34 @@ function Leagues() {
   return (
     <div>
       <NavBar />
-      <Container fluid style={containerStyle} className="mt-5">
+      <Container fluid style={containerStyle}>
         <h2>Leagues</h2>
         <Row className="mb-3">
           <LeagueList handleLeagueClick={handleLeagueClick} />
         </Row>
         <h2>Players</h2>
-        {players && players.map((player, index) => (
-          <Card key={index} className="mb-2">
-            <Card.Body>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Card.Title>{player.name}</Card.Title>
-              </div>
-            </Card.Body>
-          </Card>
-        ))}
+        <Row>
+          {players && players.map((player, index) => (
+            <Col key={index} xs={12} md={6} lg={4}>
+              <Card className="mb-3">
+                <Card.Body>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Card.Title>{player.name}</Card.Title>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
         <Row className="mt-3">
-          <Button onClick={handlePreviousPage} disabled={currentPage === 1} className="mr-2">
-            Previous Page
-          </Button>
-          <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
-            Next Page
-          </Button>
+          <Col className="text-center">
+            <Button onClick={handlePreviousPage} disabled={currentPage === 1} className="mr-2">
+              Previous Page
+            </Button>
+            <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+              Next Page
+            </Button>
+          </Col>
         </Row>
       </Container>
     </div>
