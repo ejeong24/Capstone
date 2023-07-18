@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, ListGroup, Form, Collapse } from 'react-bootstrap';
 
-function SquadItem({ squad , userState }) {
+function SquadItem({ squad, userState }) {
   const [editMode, setEditMode] = useState(false);
   const [newSquadName, setNewSquadName] = useState(squad.name || '');
   const [squadPlayers, setSquadPlayers] = useState([]);
   const [squads, setSquads] = useState([]);
   const [open, setOpen] = useState(false); // new state for Collapse
-  
 
   useEffect(() => {
     fetch(`/squad_players/${squad.id}`)
       .then(response => response.json())
       .then(data => {
         setSquadPlayers(data);
-        console.log(data)
-        console.log(userState.id)
+        console.log(data);
+        console.log(userState.id);
 
         const fetchPlayerNames = async () => {
           const playerNames = await Promise.all(
@@ -44,7 +43,6 @@ function SquadItem({ squad , userState }) {
       });
   }, [squad.id]);
 
-
   const handleEditSquad = () => {
     fetch(`/squads/${squad.id}/edit`, {
       method: 'PATCH',
@@ -55,11 +53,12 @@ function SquadItem({ squad , userState }) {
     })
       .then(() => {
         setEditMode(false);
+        window.location.reload(); // Reload the page after editing the squad name
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error:', error);
       });
-  }
+  };
 
   const handleDeleteSquad = () => {
     fetch(`/squads/${squad.id}/delete`, {
@@ -67,13 +66,14 @@ function SquadItem({ squad , userState }) {
     })
       .then(() => {
         // Handle deletion success here.
+        window.location.reload(); // Reload the page after deleting the squad
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error:', error);
       });
-  }
+  };
 
-  const handleDeletePlayer = (playerId) => {
+  const handleDeletePlayer = playerId => {
     fetch(`/users/squads/${squad.id}/delete-player`, {
       method: 'POST',
       headers: {
@@ -84,58 +84,68 @@ function SquadItem({ squad , userState }) {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        window.location.reload(); // Reload the page after deleting a player from the squad
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error:', error);
       });
-  }
+  };
 
   const handleSetActiveSquad = () => {
     fetch(`/users/${userState.id}/squads/activeSquad`, {
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         console.log(data);
-        
+
         fetch(`/users/${userState.id}/squads/${squad.id}/setActive`, {
           method: 'POST',
         })
-          .then((response) => response.json())
-          .then((data) => {
+          .then(response => response.json())
+          .then(data => {
             console.log(data);
             setSquads(data);
+            window.location.reload(); // Reload the page after setting the squad as active
           })
-          .catch((error) => {
+          .catch(error => {
             console.error('Error:', error);
           });
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error:', error);
       });
   };
-  
-  
 
   return (
     <Card className="mb-3 shadow" style={{ borderRadius: '15px' }}>
       <Card.Body>
         <Card.Title>{squad.name}</Card.Title>
-        <Button variant="primary" onClick={handleSetActiveSquad}>Set as Active</Button>{' '}
-        <Button variant="secondary" onClick={() => {setEditMode(true); setOpen(!open)}}>Edit</Button>{' '}
-        <Button variant="danger" onClick={handleDeleteSquad}>Delete</Button>
+        <Button variant="primary" onClick={handleSetActiveSquad}>
+          Set as Active
+        </Button>{' '}
+        <Button variant="secondary" onClick={() => { setEditMode(true); setOpen(!open); }}>
+          Edit
+        </Button>{' '}
+        <Button variant="danger" onClick={handleDeleteSquad}>
+          Delete
+        </Button>
 
         <Collapse in={open}>
           <div>
             {!editMode ? null : (
               <>
-                <Form.Control 
-                  type="text" 
-                  value={newSquadName} 
+                <Form.Control
+                  type="text"
+                  value={newSquadName}
                   onChange={e => setNewSquadName(e.target.value)}
                 />
-                <Button variant="success" onClick={handleEditSquad}>Save</Button>{' '}
-                <Button variant="secondary" onClick={() => {setEditMode(false); setOpen(!open)}}>Cancel</Button>
+                <Button variant="success" onClick={handleEditSquad}>
+                  Save
+                </Button>{' '}
+                <Button variant="secondary" onClick={() => { setEditMode(false); setOpen(!open); }}>
+                  Cancel
+                </Button>
               </>
             )}
           </div>
@@ -147,13 +157,15 @@ function SquadItem({ squad , userState }) {
           {squadPlayers.map(squadPlayer => (
             <ListGroup.Item key={squadPlayer.id}>
               Player ID: {squadPlayer.player_id}, Player Name: {squadPlayer.playerName}{' '}
-              <Button variant="danger" onClick={() => handleDeletePlayer(squadPlayer.player_id)}>Delete Player</Button>
+              <Button variant="danger" onClick={() => handleDeletePlayer(squadPlayer.player_id)}>
+                Delete Player
+              </Button>
             </ListGroup.Item>
           ))}
         </ListGroup>
       </Card.Body>
     </Card>
   );
-};
+}
 
 export default SquadItem;
