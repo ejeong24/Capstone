@@ -117,56 +117,85 @@ function Profile({ userState }) {
   }
 
   return (
-    <Container>
-      <h3 className="text-center my-4">User Profile</h3>
-      <p>Username: {userProfile.username}</p>
-      <p>First Name: {userProfile.firstName}</p>
-      <p>Last Name: {userProfile.lastName}</p>
-      <p>Email: {userProfile.email}</p>
+<Container>
+  <h3 className="text-center my-4">User Profile</h3>
+  <p>Username: {userProfile.username}</p>
+  <p>First Name: {userProfile.firstName}</p>
+  <p>Last Name: {userProfile.lastName}</p>
+  <p>Email: {userProfile.email}</p>
 
-      <h3 className="text-center my-4">Edit Profile</h3>
-      <Button 
-        onClick={() => setOpen(!open)} 
-        aria-controls="edit-profile-form" 
-        aria-expanded={open}
-      >
-        {open ? 'Hide Edit Profile Form' : 'Show Edit Profile Form'}
-      </Button>
+  <h3 className="text-center my-4">Edit Profile</h3>
+  <Button
+    onClick={() => setOpen(!open)}
+    aria-controls="edit-profile-form"
+    aria-expanded={open}
+  >
+    {open ? 'Hide Edit Profile Form' : 'Show Edit Profile Form'}
+  </Button>
 
-      <Collapse in={open}>
-        <div id="edit-profile-form">
-          <Form onSubmit={handleProfileSubmit}>
-            <Form.Group controlId="username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="text" name="username" value={userProfile.username} onChange={handleProfileChange} />
-            </Form.Group>
-            <Form.Group controlId="firstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" name="firstName" value={userProfile.firstName} onChange={handleProfileChange} />
-            </Form.Group>
-            <Form.Group controlId="lastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" name="lastName" value={userProfile.lastName} onChange={handleProfileChange} />
-            </Form.Group>
-            <Form.Group controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" value={userProfile.email} onChange={handleProfileChange} />
-            </Form.Group>
-            <Button variant="primary" type="submit">Update Profile</Button>
-          </Form>
-        </div>
-      </Collapse>
-      <h3>Create New Squad</h3>
-      <form onSubmit={handleCreateSquad}>
-        <input
-          type="text"
-          placeholder="Enter squad name"
-          value={newSquadName}
-          onChange={event => setNewSquadName(event.target.value)}
-        />
-        <button type="submit">Create Squad</button>
-      </form>
-    </Container>
+  <Collapse in={open}>
+    <div id="edit-profile-form">
+      <Form onSubmit={handleProfileSubmit}>
+        <Form.Group controlId="username">
+          <Form.Label className="text-dark">Username</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            value={userProfile.username}
+            onChange={handleProfileChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="firstName">
+          <Form.Label className="text-dark">First Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="firstName"
+            value={userProfile.firstName}
+            onChange={handleProfileChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="lastName">
+          <Form.Label className="text-dark">Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="lastName"
+            value={userProfile.lastName}
+            onChange={handleProfileChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="email">
+          <Form.Label className="text-dark">Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={userProfile.email}
+            onChange={handleProfileChange}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Update Profile
+        </Button>
+      </Form>
+    </div>
+  </Collapse>
+
+  <h3 className="text-center my-4">Create New Squad</h3>
+  <Form onSubmit={handleCreateSquad}>
+    <Form.Group controlId="squadName">
+      <Form.Control
+        type="text"
+        placeholder="Enter squad name"
+        value={newSquadName}
+        onChange={event => setNewSquadName(event.target.value)}
+      />
+    </Form.Group>
+    <Button variant="primary" type="submit" onClick={() => window.location.reload()}>
+      Create Squad
+    </Button>
+  </Form>
+</Container>
+
+
   );
 }
 
