@@ -16,51 +16,48 @@ function RegistrationForm() {
     password: '',
   });
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-  
     // Prepare the request body with the form data
     const requestBody = JSON.stringify({
-      ...formData
+      ...formData,
     });
-  
+
     // Send the POST request to the server
     fetch('/users/register', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: requestBody
+      body: requestBody,
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // Handle the response from the server
         console.log(data); // You can do something with the response if needed
-  
-        // Reset form fields
+        alert('User registered successfully. Please sign in to access My FutHut.'); // Display the success message
         setFormData({
           username: '',
           firstName: '',
           lastName: '',
           email: '',
           password: '',
-        });
+        }); // Reset form fields
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error:', error);
         // Handle the error if necessary
       });
   };
-  
 
   return (
     <Container>
