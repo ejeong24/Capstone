@@ -156,6 +156,16 @@ function Profile({ userState }) {
           </Form>
         </div>
       </Collapse>
+      <h3>Create New Squad</h3>
+      <form onSubmit={handleCreateSquad}>
+        <input
+          type="text"
+          placeholder="Enter squad name"
+          value={newSquadName}
+          onChange={event => setNewSquadName(event.target.value)}
+        />
+        <button type="submit">Create Squad</button>
+      </form>
     </Container>
   );
 }
