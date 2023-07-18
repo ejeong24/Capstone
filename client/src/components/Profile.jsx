@@ -100,7 +100,7 @@ function Profile({ userState }) {
   };
   
   const handleProfileSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     fetch(`/users/${userState.id}/profile`, {
       method: 'PATCH',
       headers: {

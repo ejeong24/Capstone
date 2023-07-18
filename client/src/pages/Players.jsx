@@ -31,6 +31,7 @@ function Players() {
             .then((response) => {
               if (response.ok) {
                 console.log('Player added to active squad successfully.');
+                alert('Player added to active squad.'); // Display the alert message
               } else {
                 console.error('Error adding player to active squad.');
               }
