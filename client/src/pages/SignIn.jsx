@@ -37,7 +37,7 @@ function SignIn() {
           setPassword('');
           setTimeout(() => {
             setSignInSuccess(false);
-            history.push('/'); // Redirect to home page
+            history.push('/myfuthut'); // Redirect to home page
           }, 2000);
         } else {
           setSignInError('Invalid username or password');
