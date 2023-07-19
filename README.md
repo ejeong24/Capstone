@@ -13,7 +13,7 @@
       - Add or delete players from a given squad.
       - Add and edit my profile information, such as username and e-mail.
 
-## 🎨 Wireframe (Figma)  
+## 🎨 Wireframe
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Home.PNG)
 ![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignIn.PNG)
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignOut.PNG)
@@ -21,15 +21,15 @@
 ![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Players.PNG)
 ![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)
 
-## 🌳 React Components Tree  
+## 🌳 React Tree  
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Tree.PNG)
 
 ## ↔️ Schema
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Schema.PNG)
 
-## 🗺️ React Routes
+## 🗺️ React Routes 
 
-| Route Path | Component |
+| Route      | Component |
 | ---------- | --------- |
 | `/`        | Home      |
 | `/players` | Players   |
