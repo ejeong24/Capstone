@@ -33,13 +33,15 @@
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema%20Diagram.PNG)
 
 - **React Routes**
-Route     	Component
-/	Home
-/players	Players
-/leagues	Leagues
-/myfuthut	MyFutHut
-/signin	SignIn
-/signout	SignOut
+
+| Route Path | Component |
+| ---------- | --------- |
+| `/`        | Home      |
+| `/players` | Players   |
+| `/leagues` | Leagues   |
+| `/myfuthut` | MyFutHut |
+| `/signin`  | SignIn    |
+| `/signout` | SignOut   |
 
 ## 🛠️ API Routes  
 | Route                                          | Request Method | Body                                   | Response                                 |
