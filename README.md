@@ -19,7 +19,7 @@
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Home.PNG)
 ![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignIn.PNG)
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignOut.PNG)
-![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_My_FutHut.PNG)
+![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_MyFutHut.PNG)
 ![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Players.PNG)
 ![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)
 
