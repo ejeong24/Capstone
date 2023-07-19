@@ -29,7 +29,6 @@
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Components%20Tree.PNG)
 
 ## ↔️ Schema
-- **Diagram**  
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema%20Diagram.PNG)
 
 ## 🗺️ React Routes
