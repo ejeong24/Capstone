@@ -16,14 +16,12 @@
       - Add and edit my profile information, such as username and e-mail.
 
 ## 🎨 Wireframe (Figma)  
-![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Home.PNG)
-![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20My%20FutHut.PNG)
-![Wireframe - Player by ID](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Player%20by%20ID.PNG)
-![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Players%20and%20by%20League.PNG)
-![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Leagues.PNG)
-![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20In.PNG)
-![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Sign%20Out.PNG)
-
+![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Home.PNG)
+![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignIn.PNG)
+![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignOut.PNG)
+![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_My_FutHut.PNG)
+![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Players.PNG)
+![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)
 
 ## 🌳 React Components Tree  
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Tree.PNG)
