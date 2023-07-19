@@ -14,11 +14,17 @@
       - Add and edit my profile information, such as username and e-mail.
 
 ## 🎨 Wireframe
+**Home**
 ![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Home.PNG)
+**Sign In**
 ![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignIn.PNG)
+**Sign Out**
 ![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignOut.PNG)
+**My FutHut**
 ![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_MyFutHut.PNG)
+**Players**
 ![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Players.PNG)
+**Leagues**
 ![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)
 
 ## 🌳 React Tree  
