@@ -1,5 +1,5 @@
 # ⚽️ FutHut
-   - FutHut revolutionizes FIFA Ultimate Team by providing users with a web app that simplifies squad building for a more convenient and engaging experience.
+   - FutHut revolutionizes FIFA Ultimate Team (FUT) by providing users with a web app that simplifies squad building for a more convenient and engaging experience.
 
 ## 📂 GitHub Repository  
    - [https://github.com/ejeong24/Capstone](https://github.com/ejeong24/Capstone)
