@@ -1,6 +1,4 @@
 # ⚽️ FutHut
-
-## 💻 Description 
    - FutHut revolutionizes FIFA Ultimate Team by providing users with a web app that simplifies squad building for a more convenient and engaging experience.
 
 ## 📂 GitHub Repository  
