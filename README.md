@@ -22,7 +22,7 @@
 ![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)
 
 ## 🌳 React Tree  
-![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20React%20Tree.PNG)
+![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_React_Tree.PNG)
 
 ## ↔️ Schema
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Schema.PNG)
