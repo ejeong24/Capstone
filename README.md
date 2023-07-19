@@ -33,26 +33,16 @@
 ![Schema](https://github.com/ejeong24/Capstone/blob/main/images/FutHut%20Schema%20Diagram.PNG)
 
 - **React Routes**
-   - **Home:**
-      - Route: /
-      
-   - **Players:**
-      - Route: /players
-
-   - **Leagues:**
-      - Route: /leagues
-   
-   - **My FutHut:**
-      - Route: /myfuthut
-
-   - **Sign In:**
-      - Route: /signin
-        
-   - **Sign Out:**
-      - Route: /signout
+Route     	Component
+/	Home
+/players	Players
+/leagues	Leagues
+/myfuthut	MyFutHut
+/signin	SignIn
+/signout	SignOut
 
 ## 🛠️ API Routes  
-| Route Path                                      | Request Method | Body                                   | Response                                 |
+| Route                                          | Request Method | Body                                   | Response                                 |
 | ---------------------------------------------- | -------------- | -------------------------------------- | ---------------------------------------- |
 | `/squad_players/<int:squadID>`                  | GET            | N/A                                    | List of squad players                    |
 | `/users/register`                               | POST           | `{ "username": "...", "firstName": "...", "lastName": "...", "email": "...", "password": "..." }` | Success message and user ID              |
