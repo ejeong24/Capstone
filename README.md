@@ -15,17 +15,17 @@
 
 ## 🎨 Wireframe
 **Home**  
-![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Home.PNG)
+![Wireframe - Home](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Home.PNG)  
 **Sign In**  
-![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignIn.PNG)
+![Wireframe - Sign In](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignIn.PNG)  
 **Sign Out**  
-![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignOut.PNG)
+![Wireframe - Sign Out](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_SignOut.PNG)  
 **My FutHut**  
-![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_MyFutHut.PNG)
+![Wireframe - My FutHut](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_MyFutHut.PNG)  
 **Players**  
-![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Players.PNG)
+![Wireframe - Players](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Players.PNG)  
 **Leagues**  
-![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)
+![Wireframe - Leagues](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_Leagues.PNG)  
 
 ## 🌳 React Tree  
 ![React Components Tree](https://github.com/ejeong24/Capstone/blob/main/images/FutHut_React_Tree.PNG)
