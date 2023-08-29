@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 // User component
 function User() {
@@ -6,10 +6,10 @@ function User() {
 
   useEffect(() => {
     // Simulating API call to fetch user data
-    fetch('/api/user')
-      .then(response => response.json())
-      .then(data => setUser(data))
-      .catch(error => console.error(error));
+    fetch("/api/user")
+      .then((response) => response.json())
+      .then((data) => setUser(data))
+      .catch((error) => console.error(error));
   }, []);
 
   return (

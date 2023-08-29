@@ -1,38 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../contexts/UserContext';
-import { Container, Form, Button, Collapse } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
+import { Container, Form, Button, Collapse } from "react-bootstrap";
 
 // Profile component
 function Profile({ userState }) {
   const [squads, setSquads] = useState([]);
   const { setUserState } = useContext(UserContext);
   const [userProfile, setUserProfile] = useState({
-    firstName: '',
-    lastName: '',
-    email: ''
+    firstName: "",
+    lastName: "",
+    email: "",
   });
   // const [activeSquad, setActiveSquad] = useState(null);
-  const [newSquadName, setNewSquadName] = useState('');
+  const [newSquadName, setNewSquadName] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // Simulating API call to fetch user profile data
     fetch(`/users/${userState.id}/profile`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // Assuming the received data is an object with properties name, platform, ign, and bio
         setUserProfile(data);
       })
-      .catch(error => console.error(error));
-  
+      .catch((error) => console.error(error));
+
     // Simulating API call to fetch user's squads data
     fetch(`/users/${userState.id}/squads`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // Assuming the received data is an array of squad objects
         setSquads(data);
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }, [userState.id]);
 
   // const handleSetActiveSquad = squadId => {
@@ -63,139 +63,141 @@ function Profile({ userState }) {
 
   const handleProfileChange = (e) => {
     const { name, value } = e.target;
-    setUserProfile(prevState => ({
+    setUserProfile((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-  }
+  };
 
-  const handleCreateSquad = event => {
+  const handleCreateSquad = (event) => {
     event.preventDefault();
-  
+
     // Prepare the data for the API request
     const data = {
       squad_name: newSquadName,
-      user_id: userState.id // Replace "userID" with the appropriate property of your userState object
+      user_id: userState.id, // Replace "userID" with the appropriate property of your userState object
     };
-  
+
     // Send the API request to create a new squad
-    fetch('/squads', {
-      method: 'POST',
+    fetch("/squads", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         console.log(result);
         // Handle the response from the API as needed
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         // Handle any errors that occur during the API request
       });
-  
-    setNewSquadName('');
+
+    setNewSquadName("");
   };
-  
+
   const handleProfileSubmit = (e) => {
     // e.preventDefault();
     fetch(`/users/${userState.id}/profile`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(userProfile)
+      body: JSON.stringify(userProfile),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
-        setUserState(userProfile);  // Updating the userState with updated profile
+        setUserState(userProfile); // Updating the userState with updated profile
       })
-      .catch(error => console.error(error));
-  }
+      .catch((error) => console.error(error));
+  };
 
   return (
-<Container>
-  <h3 className="text-center my-4">User Profile</h3>
-  <p>Username: {userProfile.username}</p>
-  <p>First Name: {userProfile.firstName}</p>
-  <p>Last Name: {userProfile.lastName}</p>
-  <p>Email: {userProfile.email}</p>
+    <Container>
+      <h3 className="text-center my-4">User Profile</h3>
+      <p>Username: {userProfile.username}</p>
+      <p>First Name: {userProfile.firstName}</p>
+      <p>Last Name: {userProfile.lastName}</p>
+      <p>Email: {userProfile.email}</p>
 
-  <h3 className="text-center my-4">Edit Profile</h3>
-  <Button
-    onClick={() => setOpen(!open)}
-    aria-controls="edit-profile-form"
-    aria-expanded={open}
-  >
-    {open ? 'Hide Edit Profile Form' : 'Show Edit Profile Form'}
-  </Button>
+      <h3 className="text-center my-4">Edit Profile</h3>
+      <Button
+        onClick={() => setOpen(!open)}
+        aria-controls="edit-profile-form"
+        aria-expanded={open}
+      >
+        {open ? "Hide Edit Profile Form" : "Show Edit Profile Form"}
+      </Button>
 
-  <Collapse in={open}>
-    <div id="edit-profile-form">
-      <Form onSubmit={handleProfileSubmit}>
-        <Form.Group controlId="username">
-          <Form.Label className="text-dark">Username</Form.Label>
+      <Collapse in={open}>
+        <div id="edit-profile-form">
+          <Form onSubmit={handleProfileSubmit}>
+            <Form.Group controlId="username">
+              <Form.Label className="text-dark">Username</Form.Label>
+              <Form.Control
+                type="text"
+                name="username"
+                value={userProfile.username}
+                onChange={handleProfileChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="firstName">
+              <Form.Label className="text-dark">First Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="firstName"
+                value={userProfile.firstName}
+                onChange={handleProfileChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="lastName">
+              <Form.Label className="text-dark">Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="lastName"
+                value={userProfile.lastName}
+                onChange={handleProfileChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label className="text-dark">Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={userProfile.email}
+                onChange={handleProfileChange}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Update Profile
+            </Button>
+          </Form>
+        </div>
+      </Collapse>
+
+      <h3 className="text-center my-4">Create New Squad</h3>
+      <Form onSubmit={handleCreateSquad}>
+        <Form.Group controlId="squadName">
           <Form.Control
             type="text"
-            name="username"
-            value={userProfile.username}
-            onChange={handleProfileChange}
+            placeholder="Enter squad name"
+            value={newSquadName}
+            onChange={(event) => setNewSquadName(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="firstName">
-          <Form.Label className="text-dark">First Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="firstName"
-            value={userProfile.firstName}
-            onChange={handleProfileChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="lastName">
-          <Form.Label className="text-dark">Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="lastName"
-            value={userProfile.lastName}
-            onChange={handleProfileChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label className="text-dark">Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={userProfile.email}
-            onChange={handleProfileChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Update Profile
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={() => window.location.reload()}
+        >
+          Create Squad
         </Button>
       </Form>
-    </div>
-  </Collapse>
-
-  <h3 className="text-center my-4">Create New Squad</h3>
-  <Form onSubmit={handleCreateSquad}>
-    <Form.Group controlId="squadName">
-      <Form.Control
-        type="text"
-        placeholder="Enter squad name"
-        value={newSquadName}
-        onChange={event => setNewSquadName(event.target.value)}
-      />
-    </Form.Group>
-    <Button variant="primary" type="submit" onClick={() => window.location.reload()}>
-      Create Squad
-    </Button>
-  </Form>
-</Container>
-
-
+    </Container>
   );
 }
 
