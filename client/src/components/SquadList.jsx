@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import SquadItem from '../components/SquadItem';
-import { Container, ListGroup } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import SquadItem from "../components/SquadItem";
+import { Container, ListGroup } from "react-bootstrap";
 
 // SquadList component
 function SquadList({ userState }) {
@@ -9,12 +9,12 @@ function SquadList({ userState }) {
   useEffect(() => {
     // Fetch user's squads data
     fetch(`/users/${userState.id}/squads`)
-      .then(response => response.json())
-      .then(data => {
-        setSquads(data)
-        console.log(data)
+      .then((response) => response.json())
+      .then((data) => {
+        setSquads(data);
+        console.log(data);
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }, [userState.id]);
 
   return (
@@ -22,7 +22,7 @@ function SquadList({ userState }) {
       <h3 className="text-center my-4">Squad List</h3>
       {squads && squads.length > 0 ? (
         <ListGroup>
-          {squads.map(squad => (
+          {squads.map((squad) => (
             <SquadItem key={squad.id} squad={squad} userState={userState} />
           ))}
         </ListGroup>

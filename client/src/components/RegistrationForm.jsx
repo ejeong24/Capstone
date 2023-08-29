@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // RegistrationForm component
 function RegistrationForm() {
   const [formData, setFormData] = useState({
-    id: '',
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    id: "",
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
 
   const handleInputChange = (event) => {
@@ -33,10 +33,10 @@ function RegistrationForm() {
     });
 
     // Send the POST request to the server
-    fetch('/users/register', {
-      method: 'POST',
+    fetch("/users/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: requestBody,
     })
@@ -44,17 +44,19 @@ function RegistrationForm() {
       .then((data) => {
         // Handle the response from the server
         console.log(data); // You can do something with the response if needed
-        alert('User registered successfully. Please sign in to access My FutHut.'); // Display the success message
+        alert(
+          "User registered successfully. Please sign in to access My FutHut."
+        ); // Display the success message
         setFormData({
-          username: '',
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
+          username: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
         }); // Reset form fields
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
         // Handle the error if necessary
       });
   };
